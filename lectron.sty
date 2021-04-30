@@ -1,0 +1,272 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{packatron/lectron}[2021/01/22, made in Tron]
+
+%----------------options--------------
+
+%Macro pour les langues
+\newcommand{\lang}{english}
+\newcommand{\deftext}{Definition}
+\newcommand{\thmtext}{Theorem}
+\newcommand{\lemtext}{Lemma}
+\newcommand{\proptext}{Proposition}
+\newcommand{\cortext}{Consequence}
+\newcommand{\exotext}{Exercise}
+\newcommand{\exempletext}{Example}
+\newcommand{\rqtext}{Remark}
+\newcommand{\warningtext}{Warning}
+
+\newcommand{\colorboxed}{false}
+
+\DeclareOption{EN}{
+	%already in English so chill
+}
+
+\DeclareOption{FR}{
+	\renewcommand{\lang}{french}
+
+	\renewcommand{\deftext}{Définition}
+	\renewcommand{\thmtext}{Théorème}
+	\renewcommand{\lemtext}{Lemme}
+	\renewcommand{\proptext}{Proposition}
+	\renewcommand{\cortext}{Corollaire}
+	\renewcommand{\exotext}{Exercice}
+	\renewcommand{\exempletext}{Exemple}
+	\renewcommand{\rqtext}{Remarque}
+	\renewcommand{\warningtext}{Attention}
+}
+\DeclareOption*{\PackageWarning{examplepackage}{Unknown ‘\CurrentOption’}}
+
+% ---------------- tcolorbox ------------------
+\DeclareOption{colorbox}{
+	\renewcommand{\colorboxed}{true}
+} %TODO: meilleur fonctionnement?
+
+\ProcessOptions\relax
+
+
+
+%---------------packages-------------
+
+%Mise en page et texte
+\RequirePackage{cmap} % Permet de pouvoir cc/cp, search dans le pdf
+\RequirePackage[margin=2.5cm]{geometry}	% Précise les marges du document
+\RequirePackage{setspace}
+\RequirePackage[svgnames]{xcolor} %Colorer du texte
+\RequirePackage[most]{tcolorbox} % Permet de faire des boites de couleur autours des environnements
+\RequirePackage{fancyhdr} %Police/présentation, notamment en-tête et pied de pages
+\RequirePackage{enumitem} % Permet de modifier les listes à puces
+\setlist{nosep} % enlève la séparation excessive des listes
+\RequirePackage{color}		% Permet d'inclure du texte en couleur
+\RequirePackage{hyperref}		% Pour inclure des liens dans le document
+\hypersetup{
+	colorlinks=true,
+	linkcolor=black,
+	filecolor=magenta,
+	urlcolor=Navy,
+}
+\RequirePackage[\lang]{babel}	% Précise la langue du document
+\RequirePackage[T1]{fontenc}	% Précise la façon dont le document actuel est encodé
+\RequirePackage[utf8]{inputenc}	% Précise comment le texte est saisi: cela permet de tapper directement les accents
+\RequirePackage{eurosym}		%Pour pouvoir utiliser le symbole \euro{}
+
+%Pour les mathématiques
+\RequirePackage{amsmath,amssymb,amsfonts,amsthm} % Permet d'écrire des symboles mathématiques
+\RequirePackage{dsfont}		% Permet d'avoir certains alphabets utiles en mathématiques.
+\RequirePackage{manfnt}		% Permet d'utiliser le panneau virage dangereux pour le warning (\dbend ou \textdbend)
+\RequirePackage{units}		% Permet de taper les unités correctement
+\RequirePackage[makeroom]{cancel} % Permet de rayer des expressions
+\RequirePackage{mathrsfs}
+
+%Pour l'informatique
+\RequirePackage{algorithmic}
+\RequirePackage[linesnumbered,lined,ruled,vlined,\lang]{algorithm2e}
+\definecolor{darkWhite}{rgb}{0.94,0.94,0.94} % Utilisé par les options du package:
+\RequirePackage{listings}		% Permet d'insérer du code dans le fichier
+
+%Graphiques, tableaux et illustrations
+\RequirePackage{graphicx}		% Permet d'inclure des images
+\RequirePackage{subcaption} % Permet d'organiser plusieurs images côte à côte
+%\RequirePackage{wrapfig} %Permet d'avoir du texte autour des figure, table, etc... Ne fonctionne pas avec les listes et amsthm
+\RequirePackage{float} 			% Permet d'utiliser [H] comme option des figures
+\RequirePackage{booktabs}   % Permet d'avoir de jolis tableau (\toprule, \midrule, \bottomrule)
+\RequirePackage{multicol}   % Permet d'avoir plusieurs colonnes
+\RequirePackage{pgf,tikz, pgfplots}		% Le module tikz permet de tracer de belles images
+\pgfplotsset{compat=1.17}
+\usetikzlibrary{arrows, automata, graphs}
+
+\RequirePackage{calc} % Important : permet des opération arithmétiques dans les instructions
+\RequirePackage{etoolbox} % Important : permet de faire des if dans le code latex (see colorboxed).
+
+
+\lstset{			% Changer l'option langage pour adapter la coloration syntaxique
+aboveskip=3mm,		% Ces options se trouvent à l'addresse: borntocode.fr/latex-comment-insere-et-customiser-du-code-source/
+belowskip=-2mm,
+backgroundcolor=\color{darkWhite},
+basicstyle=\footnotesize,
+breakatwhitespace=false,
+breaklines=true,
+captionpos=b,
+commentstyle=\color{red},
+deletekeywords={...},
+escapeinside={\%*}{*)},
+extendedchars=true,
+framexleftmargin=16pt,
+framextopmargin=3pt,
+framexbottommargin=6pt,
+frame=tb,
+keepspaces=true,
+keywordstyle=\color{blue},
+language=Python,
+literate=
+{²}{{\textsuperscript{2}}}1
+{é}{{\'{e}}}1
+{è}{{\`{e}}}1
+{É}{{\'{E}}}1
+{Ê}{{\^{E}}}1
+{â}{{\^{a}}}1
+{à}{{\`{a}}}1
+{À}{{\`{A}}}1
+{ç}{{\c{c}}}1
+{ô}{{\^{o}}}1,
+morekeywords={*,...},
+numbers=left,
+numbersep=10pt,
+numberstyle=\tiny\color{black},
+rulecolor=\color{black},
+showspaces=false,
+showstringspaces=false,
+showtabs=false,
+stepnumber=1,
+stringstyle=\color{gray},
+tabsize=4,
+title=\lstname,
+}
+
+%Mise en place des options pour la mise en page
+\onehalfspacing
+% \setlength{\parindent}{0 cm}
+\pagestyle{fancy}
+\setlength{\headheight}{14pt}
+\allowdisplaybreaks %Pour couper les environnements maths sur plusieurs pages au besoin
+
+%Titlepage
+% \newcommand{mytitle}[1]{}
+
+%Couleurs
+\definecolor{grey}{gray}{0.85}
+\definecolor{grey1}{gray}{0.95}
+\definecolor{grey2}{gray}{0.97}
+
+%Environnements
+% \newenvironment{Titre}[1]{
+% 	\begin{center}
+% 		\Large{\textbf{\textsc{#1}}}
+% 	\end{center}
+%
+% \B}
+%
+
+\newtheorem{thm}{\thmtext}[section]
+\newtheorem{lem}[thm]{\lemtext}
+\newtheorem{prop}[thm]{\proptext}
+\newtheorem{cor}{\cortext}[thm]
+
+
+% \theoremstyle{remark}
+\newtheorem*{remarque}{\rqtext}
+
+\theoremstyle{definition}
+\newtheorem{defi}{\deftext}[section]
+\newtheorem{exemple}{\exempletext}[section]
+\newtheorem{exo}{\exotext}[section]
+\theoremstyle{remark}
+\newtheorem*{solution}{Solution}
+
+\newtheoremstyle{custom}{}{}{}{}{\bfseries}{}{ }{\thmname{#3}}
+\theoremstyle{custom}
+\newtheorem*{custom}{custom}
+
+\newenvironment{warning}{\textdbend~}{}
+
+\newcommand{\exosol}[2]{\begin{exo} #1 \begin{solution} #2 \end{solution} \end{exo}}
+
+
+% ------------------ tcolorbox -------------------
+\ifbool{\colorboxed}{
+	\tcolorboxenvironment{thm}{arc=1ex, colback=Seashell, colframe=Seashell, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
+	\tcolorboxenvironment{lem}{arc=1ex, colback=Seashell, colframe=Seashell, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
+	\tcolorboxenvironment{prop}{arc=1ex, colback=Seashell, colframe=Seashell, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
+	\tcolorboxenvironment{cor}{arc=1ex, colback=Seashell, colframe=Seashell, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
+	\tcolorboxenvironment{exo}{arc=0ex, colback=grey2, colframe=grey2, colframe=grey, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
+	\tcolorboxenvironment{exemple}{arc=0ex, colback=grey2, colframe=grey2, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
+	\tcolorboxenvironment{remarque}{arc=0ex, colback=grey2, colframe=grey2, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
+	\tcolorboxenvironment{defi}{arc=1ex, colback=Azure, colframe=Azure, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
+	\tcolorboxenvironment{proof}{blanker,breakable,left=5mm,before skip=10pt,after skip=10pt,borderline west={1mm}{0pt}{grey}}
+	\tcolorboxenvironment{custom}{arc=0ex, colback=grey2, colframe=grey2, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
+	\renewenvironment{warning}{}{}
+	\tcolorboxenvironment{warning}{arc=0ex, colback=MistyRose, colframe=MistyRose, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, attach boxed title to top center={yshift=-2mm}, title=\warningtext, enhanced, colbacktitle=Tomato}
+	\renewcommand{\exosol}[2]{\begin{exo} #1 \tcbline \textit{Solution.} #2 \end{exo}}
+}{}
+
+
+%------------------ Title Page -------------------
+\newcommand{\logo}[1]{\renewcommand\@logo{#1}}
+\newcommand\@logo{}
+
+\RequirePackage{eso-pic}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\newcommand{\blap}[1]{\vbox to 0pt{#1\vss}}
+
+\newcommand\AtUpperLeftCorner[3]{%
+  \put(\LenToUnit{#1},\LenToUnit{\dimexpr\paperheight-#2}){\blap{#3}}%
+}
+\newcommand\AtUpperRightCorner[3]{%
+  \put(\LenToUnit{\dimexpr\paperwidth-#1},\LenToUnit{\dimexpr\paperheight-#2}){\blap{\llap{#3}}}%
+}
+
+\newcommand{\maketitlewithpicture}[1]{
+	\begin{titlepage}
+			\enlargethispage{2cm}
+
+			\AddToShipoutPicture{
+					%\AtUpperLeftCorner{15.5cm}{27cm}{\includegraphics[width=5cm]{data/Images/ensl.png}}
+			\AtUpperLeftCorner{0cm}{0cm}{\includegraphics[width=21cm, height=16cm]{#1}}
+			}
+
+			\begin{center}
+					\vspace*{16cm}
+
+					{\Huge\textbf{\textsc{\@title}}}
+					\HRule
+					\vspace*{0.5cm}
+
+					\large{\@author}
+					\vfill
+					\@logo
+			\end{center}
+
+	\end{titlepage}
+	\ClearShipoutPicture
+}
+
+\newcommand{\maketitlepage}[1]{
+	\begin{titlepage} % Suppresses displaying the page number on the title page and the subsequent page counts as page 1
+
+	\raggedleft % Right align the title page
+
+	\rule{1pt}{\textheight} % Vertical line
+	\hspace{0.05\textwidth} % Whitespace between the vertical line and title page text
+	\parbox[b]{0.75\textwidth}{ % Paragraph box for holding the title page text, adjust the width to move the title page left or right on the page
+
+		{\Huge\bfseries \@title}\\[2\baselineskip] % Title
+		{\large\textit{\@date}}\\[4\baselineskip] % Subtitle or further description
+		{\Large\textsc{\@author}} % Author name, lower case for consistent small caps
+
+		\vspace{0.5\textheight} % Whitespace between the title block and the publisher
+
+		{\noindent \@logo}\\[\baselineskip] % Publisher and logo
+	}
+
+	\end{titlepage}
+}
