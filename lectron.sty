@@ -146,6 +146,9 @@ title=\lstname,
 \onehalfspacing
 % \setlength{\parindent}{0 cm}
 \pagestyle{fancy}
+% \fancyhead[R]{\sectionname}
+% \fancyhead[L]{}
+% \fancyfoot[]
 \setlength{\headheight}{14pt}
 \allowdisplaybreaks %Pour couper les environnements maths sur plusieurs pages au besoin
 
@@ -212,6 +215,8 @@ title=\lstname,
 %------------------ Title Page -------------------
 \newcommand{\logo}[1]{\renewcommand\@logo{#1}}
 \newcommand\@logo{}
+\newcommand{\subtitle}[1]{\renewcommand\@subtitle{#1}}
+\newcommand\@subtitle{}
 
 \RequirePackage{eso-pic}
 
@@ -232,7 +237,7 @@ title=\lstname,
 			\AddToShipoutPicture{
 					%\AtUpperLeftCorner{15.5cm}{27cm}{\includegraphics[width=5cm]{data/Images/ensl.png}}
 			\AtUpperLeftCorner{0cm}{0cm}{\includegraphics[width=21cm, height=16cm]{#1}}
-			}
+			}V
 
 			\begin{center}
 					\vspace*{16cm}
@@ -260,7 +265,8 @@ title=\lstname,
 	\parbox[b]{0.75\textwidth}{ % Paragraph box for holding the title page text, adjust the width to move the title page left or right on the page
 
 		{\Huge\bfseries \@title}\\[2\baselineskip] % Title
-		{\large\textit{\@date}}\\[4\baselineskip] % Subtitle or further description
+		{\large \@subtitle}\\[2\baselineskip] % Subtitle 
+		{\large\textit{\@date}}\\[4\baselineskip] % date description
 		{\Large\textsc{\@author}} % Author name, lower case for consistent small caps
 
 		\vspace{0.5\textheight} % Whitespace between the title block and the publisher
@@ -269,4 +275,23 @@ title=\lstname,
 	}
 
 	\end{titlepage}
+}
+
+\newcommand{\maketitlearticle}{
+				\thispagestyle{empty}
+				\setcounter{page}{0}
+				\begin{center}
+								\@logo
+								\vspace*{1cm}
+								{\hrule
+								\vspace*{0.5cm}
+								\huge\textbf{\textsc{\@title}}}\\
+								{\@subtitle} \\
+								\HRule
+								\vspace*{0.5cm}
+
+								\large{\@author}
+								\vspace*{0.5cm}
+				\end{center}
+
 }
