@@ -39,6 +39,7 @@
 \newcommand{\pder}[2]{\pfrac{\partial #1}{\partial #2}}
 \newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
 \newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\Hess}[1]{\mathds{H}\pa{#1}}
 
 \newcommand{\ET}{\wedge} % Commande pour les arbres de dérivations.
 \newcommand{\OU}{\vee}
@@ -58,8 +59,8 @@
 
 \newcommand{\fun}[5]{  % dessine la fonction #1 : #2 -> #3
 	\begin{array}{ccccc} %							#4 -> #5
-		#1 & : & #2 & \to     & #3 \\
-		   &   & #4 & \mapsto & #5 \\
+		#1 & : & #2 & \longrightarrow     & #3 \\
+		   &   & #4 & \longmapsto & #5 \\
 	\end{array}}
 
 \newcommand*\circled[1]{\tikz[baseline= (char.base)]{  %fait un cerlce autour de #1
@@ -101,16 +102,20 @@
 
 %%%%%%%%%%%%%%%%%%%% LETTERS %%%%%%%%%%%%%%%%%%%%
 \def\A{\mathcal{A}}
+\def\bA{\mathbb{A}}
 \def\B{\mathcal{B}}
+\def\bB{\mathbb{B}}
 \def\cC{\mathcal{C}}
 \def\C{\mathbb{C}}
 \def\D{\mathcal{D}}
+\def\bD{\mathbb{D}}
 \def\E{\mathds{E}}
 \def\cE{\mathcal{E}}
 \def\F{\mathcal{F}}
 \def\G{\mathcal{G}}
 \def\bH{\mathbb{H}}
 \def\cH{\mathcal{H}}
+\def\cK{\mathcal{K}}
 \def\L{\mathcal{L}}
 \def\M{\mathcal{M}}
 \def\frakM{\mathfrak{M}}
