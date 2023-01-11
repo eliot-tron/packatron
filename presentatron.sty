@@ -192,19 +192,39 @@ title=\lstname,
 
 
 % ------------------ tcolorbox -------------------
+% gruvbox colors
+\definecolor{gruv_red}{HTML}{CC241D}
+\definecolor{gruv_green}{HTML}{98971A}
+\definecolor{gruv_yellow}{HTML}{D79921}
+\definecolor{gruv_blue}{HTML}{458588}
+\definecolor{gruv_purple}{HTML}{B16286}
+\definecolor{gruv_aqua}{HTML}{689D6A}
+\definecolor{gruv_orange}{HTML}{D65D0E}
+\definecolor{gruv_grey}{HTML}{7c6f64}
+
+\colorlet{soft_gruv_red}{gruv_red!10}
+\colorlet{soft_gruv_green}{gruv_green!10}
+\colorlet{soft_gruv_yellow}{gruv_yellow!10}
+\colorlet{soft_gruv_blue}{gruv_blue!10}
+\colorlet{soft_gruv_purple}{gruv_purple!10}
+\colorlet{soft_gruv_aqua}{gruv_aqua!10}
+\colorlet{soft_gruv_orange}{gruv_orange!10}
+\colorlet{soft_gruv_grey}{gruv_grey!10}
+\colorlet{warning_gruv_red}{gruv_red!60}
+
 \ifbool{\colorboxed}{
-	\tcolorboxenvironment{thm}{arc=1ex, colback=Seashell, colframe=Seashell, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
-	\tcolorboxenvironment{lem}{arc=1ex, colback=Seashell, colframe=Seashell, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
-	\tcolorboxenvironment{prop}{arc=1ex, colback=Seashell, colframe=Seashell, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
-	\tcolorboxenvironment{cor}{arc=1ex, colback=Seashell, colframe=Seashell, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
-	\tcolorboxenvironment{exo}{arc=0ex, colback=grey2, colframe=grey2, colframe=grey, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
-	\tcolorboxenvironment{exemple}{arc=0ex, colback=grey2, colframe=grey2, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
-	\tcolorboxenvironment{remarque}{arc=0ex, colback=grey2, colframe=grey2, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
-	\tcolorboxenvironment{defi}{arc=1ex, colback=Azure, colframe=Azure, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
+	\tcolorboxenvironment{thm}{arc=1ex, colback=soft_gruv_green, colframe=soft_gruv_green, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
+	\tcolorboxenvironment{lem}{arc=1ex, colback=soft_gruv_green, colframe=soft_gruv_green, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
+	\tcolorboxenvironment{prop}{arc=1ex, colback=soft_gruv_green, colframe=soft_gruv_green, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
+	\tcolorboxenvironment{cor}{arc=1ex, colback=soft_gruv_green, colframe=soft_gruv_green, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
+	\tcolorboxenvironment{exo}{arc=0ex, colback=soft_gruv_grey, colframe=soft_gruv_grey, colframe=grey, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
+	\tcolorboxenvironment{exemple}{arc=0ex, colback=soft_gruv_grey, colframe=soft_gruv_grey, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
+	\tcolorboxenvironment{remarque}{arc=0ex, colback=soft_gruv_grey, colframe=soft_gruv_grey, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
+	\tcolorboxenvironment{defi}{arc=1ex, colback=soft_gruv_blue, colframe=soft_gruv_blue, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
 	\tcolorboxenvironment{proof}{blanker,breakable,left=5mm,before skip=10pt,after skip=10pt,borderline west={1mm}{0pt}{grey}}
-	\tcolorboxenvironment{custom}{arc=0ex, colback=grey2, colframe=grey2, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
+	\tcolorboxenvironment{custom}{arc=0ex, colback=soft_gruv_grey, colframe=soft_gruv_grey, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
 	\renewenvironment{warning}{}{}
-	\tcolorboxenvironment{warning}{arc=0ex, colback=MistyRose, colframe=MistyRose, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, attach boxed title to top center={yshift=-2mm}, title=\warningtext, enhanced, colbacktitle=Tomato}
+	\tcolorboxenvironment{warning}{arc=0ex, colback=soft_gruv_red, colframe=soft_gruv_red, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, attach boxed title to top center={yshift=-2mm}, title=\warningtext, enhanced, colbacktitle=warning_gruv_red}
 	\renewcommand{\exosol}[2]{\begin{exo} #1 \tcbline \textit{Solution.} #2 \end{exo}}
 }{}
 
