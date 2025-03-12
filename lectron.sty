@@ -91,6 +91,7 @@
 \RequirePackage{booktabs}   % Permet d'avoir de jolis tableau (\toprule, \midrule, \bottomrule)
 \RequirePackage{multicol}   % Permet d'avoir plusieurs colonnes
 \RequirePackage{pgf,tikz, pgfplots}		% Le module tikz permet de tracer de belles images
+\RequirePackage{tikz-cd}
 \pgfplotsset{compat=1.17}
 \usetikzlibrary{arrows, automata, graphs}
 
@@ -306,7 +307,7 @@ title=\lstname,
 								{\hrule
 								\vspace*{0.5cm}
 								\huge\textbf{\textsc{\@title}}}\\
-								{\@subtitle} \\
+								{\@subtitle}~\\
 								\HRule
 								\vspace*{0.5cm}
 
