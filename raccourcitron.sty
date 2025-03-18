@@ -105,26 +105,56 @@
 \DeclareMathOperator{\sign}{sign}
 \DeclareMathOperator{\Supp}{Supp}
 \DeclareMathOperator{\grad}{grad}
-\DeclareMathOperator{\SoftMax}{SoftMax}
-\DeclareMathOperator{\ReLU}{ReLU}
 
 
 %%%%%%%%%%%%%%%%%%%% LETTERS %%%%%%%%%%%%%%%%%%%%
+
+% ---- define all \c[A-Z] ----
+\def\foo#1{%
+\expandafter\newcommand\csname c#1\endcsname{\mathcal{#1}}}
+
+\count@=0
+\loop
+\advance\count@ 1
+\edef\y{\@Alph\count@}%
+\expandafter\foo\y
+\ifnum\count@<26
+\repeat
+% ----------------------------
+
+% ---- define all \b[A-Z] ----
+\def\foo#1{%
+\expandafter\newcommand\csname b#1\endcsname{\mathbb{#1}}}
+
+\count@=0
+\loop
+\advance\count@ 1
+\edef\y{\@Alph\count@}%
+\expandafter\foo\y
+\ifnum\count@<26
+\repeat
+% ----------------------------
+
+% ---- define all \f[A-Z] ----
+\def\foo#1{%
+\expandafter\newcommand\csname f#1\endcsname{\mathfrak{#1}}}
+
+\count@=0
+\loop
+\advance\count@ 1
+\edef\y{\@Alph\count@}%
+\expandafter\foo\y
+\ifnum\count@<26
+\repeat
+% ----------------------------
+
 \def\A{\mathcal{A}}
-\def\bA{\mathbb{A}}
 \def\B{\mathcal{B}}
-\def\bB{\mathbb{B}}
-\def\cC{\mathcal{C}}
 \def\C{\mathbb{C}}
 \def\D{\mathcal{D}}
-\def\bD{\mathbb{D}}
 \def\E{\mathds{E}}
-\def\cE{\mathcal{E}}
 \def\F{\mathcal{F}}
 \def\G{\mathcal{G}}
-\def\bH{\mathbb{H}}
-\def\cH{\mathcal{H}}
-\def\cK{\mathcal{K}}
 \def\L{\mathcal{L}}
 \def\M{\mathcal{M}}
 \def\frakM{\mathfrak{M}}
@@ -132,22 +162,14 @@
 \def\No{\mathcal{N}}
 \def\N{\mathbb{N}}
 \def\O{\mathbb{O}}
-\def\cO{\mathcal{O}}
-\def\cP{\mathcal{P}}
 \def\P{\mathds{P}}
 \def\Q{\mathbb{Q}}
-\def\cR{\mathcal{R}}
 \def\R{\mathbb{R}}
-\def\bS{\mathbb{S}}
-\def\cS{\mathcal{S}}
 \def\T{\mathcal{T}}
 \def\U{\mathcal{U}}
 \def\W{\mathcal{W}}
-\def\bX{\mathbf{X}}
 \def\X{\mathcal{X}}
-\def\fX{\mathfrak{X}}
 \def\Y{\mathcal{Y}}
-\def\cZ{\mathcal{Z}}
 \def\Z{\mathbb{Z}}
 
 \def\1{\mathds{1}}

@@ -9,7 +9,7 @@
 \newcommand{\thmtext}{Theorem}
 \newcommand{\lemtext}{Lemma}
 \newcommand{\proptext}{Proposition}
-\newcommand{\cortext}{Consequence}
+\newcommand{\cortext}{Corollary}
 \newcommand{\exotext}{Exercise}
 \newcommand{\exempletext}{Example}
 \newcommand{\rqtext}{Remark}
@@ -197,7 +197,7 @@ title=\lstname,
 \newenvironment{warning}{\textdbend~}{}
 
 \newcommand{\exosol}[2]{\begin{exo} #1 \begin{solution} #2 \end{solution} \end{exo}}
-\newcommand{\marnote}[2][\notetext]{\marginpar{\emph{#1}~ #2}}
+\newcommand{\marnote}[2][\notetext]{\marginpar{\textbf{#1}~ #2}}
 
 
 % ------------------ tcolorbox -------------------
@@ -235,7 +235,7 @@ title=\lstname,
 	\renewenvironment{warning}{}{}
 	\tcolorboxenvironment{warning}{arc=0ex, colback=softGruvRed, colframe=softGruvRed, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, attach boxed title to top center={yshift=-2mm}, title=\warningtext, enhanced, colbacktitle=warningGruvRed}
 	\renewcommand{\exosol}[2]{\begin{exo} #1 \tcbline \textit{Solution.} #2 \end{exo}}
-	\newtcolorbox{note}[1]{arc=0ex, colback=softGruvBlue, colframe=gruvBlue, breakable, title=\emph{#1}, fonttitle=\bfseries}
+	\newtcolorbox{note}[1]{arc=0ex, colback=softGruvBlue, colframe=gruvBlue, breakable, title=#1., fonttitle=\normalfont\bfseries}
 	\renewcommand{\marnote}[2][\notetext]{
 					\marginnote{%
 									\begin{note}{#1}
