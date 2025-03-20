@@ -3,6 +3,9 @@
 
 %----------------options--------------
 
+% Redefines emph to be bold and italic
+\DeclareEmphSequence{\bfseries\itshape}
+
 %Macro pour les langues
 \newcommand{\lang}{english}
 \newcommand{\deftext}{Definition}
@@ -235,7 +238,7 @@ title=\lstname,
 	\renewenvironment{warning}{}{}
 	\tcolorboxenvironment{warning}{arc=0ex, colback=softGruvRed, colframe=softGruvRed, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, attach boxed title to top center={yshift=-2mm}, title=\warningtext, enhanced, colbacktitle=warningGruvRed}
 	\renewcommand{\exosol}[2]{\begin{exo} #1 \tcbline \textit{Solution.} #2 \end{exo}}
-	\newtcolorbox{note}[1]{arc=0ex, colback=softGruvBlue, colframe=gruvBlue, breakable, title=#1., fonttitle=\normalfont\bfseries}
+	\newtcolorbox{note}[1]{arc=0ex, colback=softGruvBlue, colframe=gruvBlue, title=#1., fonttitle=\normalfont\bfseries}
 	\renewcommand{\marnote}[2][\notetext]{
 					\marginnote{%
 									\begin{note}{#1}
