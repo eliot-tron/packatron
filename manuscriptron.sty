@@ -60,7 +60,7 @@
 \RequirePackage[svgnames]{xcolor} % Colorer du texte
 \RequirePackage{marginnote}
 \RequirePackage[most]{tcolorbox} % Permet de faire des boites de couleur autours des environnements
-\RequirePackage{fancyhdr} %Police/présentation, notamment en-tête et pied de pages
+\RequirePackage[twoside]{fancyhdr} %Police/présentation, notamment en-tête et pied de pages
 \RequirePackage{enumitem} % Permet de modifier les listes à puces
 \setlist{nosep} % enlève la séparation excessive des listes
 \RequirePackage{color}		% Permet d'inclure du texte en couleur
@@ -154,10 +154,15 @@ title=\lstname,
 % \onehalfspacing
 % \setlength{\parindent}{0 cm}
 \pagestyle{fancy}
+% \fancyhead[RE]{\thechaptername}
+\fancyhead{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\parbox[t]{0.8\textwidth}{\nouppercase{\leftmark}}}
+\fancyhead[LO]{\parbox[t]{0.8\textwidth}{\nouppercase{\rightmark}}}
 % \fancyhead[R]{\sectionname}
 % \fancyhead[L]{}
-% \fancyfoot[]
-\setlength{\headheight}{14pt}
+\fancyfoot{}
+% \setlength{\headheight}{3\baselineskip}
 \allowdisplaybreaks %Pour couper les environnements maths sur plusieurs pages au besoin
 
 %Titlepage
@@ -238,7 +243,7 @@ title=\lstname,
 	\renewenvironment{warning}{}{}
 	\tcolorboxenvironment{warning}{arc=0ex, colback=softGruvRed, colframe=softGruvRed, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, attach boxed title to top center={yshift=-2mm}, title=\warningtext, enhanced, colbacktitle=warningGruvRed}
 	\renewcommand{\exosol}[2]{\begin{exo} #1 \tcbline \textit{Solution.} #2 \end{exo}}
-	\newtcolorbox{note}[1]{arc=0ex, colback=softGruvBlue, colframe=gruvBlue, title=#1., fonttitle=\normalfont\bfseries}
+	\newtcolorbox{note}[1]{arc=0ex, colback=softGruvBlue, colframe=gruvBlue, title=#1., fonttitle=\normalfont\bfseries, fontupper=\normalfont}
 	\renewcommand{\marnote}[2][\notetext]{
 					\marginnote{%
 									\begin{note}{#1}
