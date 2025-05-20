@@ -102,7 +102,15 @@
 \RequirePackage{pgf,tikz, pgfplots}		% Le module tikz permet de tracer de belles images
 \RequirePackage{tikz-cd} % Tikz commutative diagrams
 \pgfplotsset{compat=1.17}
+% see https://tex.stackexchange.com/a/216042/4427
 \usetikzlibrary{arrows, automata, graphs}
+\tikzset{
+  symbol/.style={
+    draw=none,
+    every to/.append style={
+      edge node={node [sloped, allow upside down, auto=false]{$#1$}}}
+  }
+}
 
 \RequirePackage{calc} % Important : permet des opération arithmétiques dans les instructions
 \RequirePackage{etoolbox} % Important : permet de faire des if dans le code latex (see colorboxed).
