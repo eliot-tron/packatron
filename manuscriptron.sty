@@ -250,17 +250,17 @@ title=\lstname,
 \colorlet{warningGruvRed}{gruvRed!60}
 
 \ifbool{\colorboxed}{
-\newtcolorbox{abstract}{arc=0ex, colback=softGruvPurple, colframe=gruvPurple, title={Abstract}, fonttitle=\normalfont\bfseries, fontupper=\normalfont,}
-	\tcolorboxenvironment{thm}{arc=1ex, colback=softGruvGreen, colframe=softGruvGreen, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
-	\tcolorboxenvironment{lem}{arc=1ex, colback=softGruvGreen, colframe=softGruvGreen, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
-	\tcolorboxenvironment{prop}{arc=1ex, colback=softGruvGreen, colframe=softGruvGreen, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
-	\tcolorboxenvironment{cor}{arc=1ex, colback=softGruvGreen, colframe=softGruvGreen, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
-	\tcolorboxenvironment{exo}{arc=0ex, colback=softGruvGrey, colframe=softGruvGrey, colframe=grey, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
-	\tcolorboxenvironment{exemple}{arc=0ex, colback=softGruvGrey, colframe=softGruvGrey, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
-	\tcolorboxenvironment{remarque}{arc=0ex, colback=softGruvGrey, colframe=softGruvGrey, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
-	\tcolorboxenvironment{defi}{arc=1ex, colback=softGruvBlue, colframe=softGruvBlue, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
+\newtcolorbox{abstract}{arc=0ex, colback=softGruvPurple, colframe=gruvPurple, title={Abstract}, fonttitle=\normalfont\bfseries, fontupper=\normalfont, breakable, enhanced}
+	\tcolorboxenvironment{thm}{arc=1ex, colback=softGruvGreen, colframe=softGruvGreen, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
+	\tcolorboxenvironment{lem}{arc=1ex, colback=softGruvGreen, colframe=softGruvGreen, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
+	\tcolorboxenvironment{prop}{arc=1ex, colback=softGruvGreen, colframe=softGruvGreen, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
+	\tcolorboxenvironment{cor}{arc=1ex, colback=softGruvGreen, colframe=softGruvGreen, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
+	\tcolorboxenvironment{exo}{arc=0ex, colback=softGruvGrey, colframe=softGruvGrey, colframe=grey, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
+	\tcolorboxenvironment{exemple}{arc=0ex, colback=softGruvGrey, colframe=softGruvGrey, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
+	\tcolorboxenvironment{remarque}{arc=0ex, colback=softGruvGrey, colframe=softGruvGrey, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
+	\tcolorboxenvironment{defi}{arc=1ex, colback=softGruvBlue, colframe=softGruvBlue, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
 	\tcolorboxenvironment{proof}{blanker,breakable,left=5mm,before skip=10pt,after skip=10pt,borderline west={1mm}{0pt}{grey}}
-	\tcolorboxenvironment{custom}{arc=0ex, colback=softGruvGrey, colframe=softGruvGrey, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable}
+	\tcolorboxenvironment{custom}{arc=0ex, colback=softGruvGrey, colframe=softGruvGrey, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
 	\renewenvironment{warning}{}{}
 	\tcolorboxenvironment{warning}{arc=0ex, colback=softGruvRed, colframe=softGruvRed, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, attach boxed title to top center={yshift=-2mm}, title=\warningtext, enhanced, colbacktitle=warningGruvRed}
 	\renewcommand{\exosol}[2]{\begin{exo} #1 \tcbline \textit{Solution.} #2 \end{exo}}
