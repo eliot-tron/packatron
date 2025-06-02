@@ -7,42 +7,42 @@
 \DeclareEmphSequence{\bfseries\itshape}
 
 %Macro pour les langues
-\newcommand{\lang}{english}
-\newcommand{\deftext}{Definition}
-\newcommand{\thmtext}{Theorem}
-\newcommand{\lemtext}{Lemma}
-\newcommand{\proptext}{Proposition}
-\newcommand{\cortext}{Corollary}
-\newcommand{\exotext}{Exercise}
-\newcommand{\exempletext}{Example}
-\newcommand{\rqtext}{Remark}
-\newcommand{\warningtext}{Warning}
+\def\lang{english}
+\def\deftext{Definition}
+\def\thmtext{Theorem}
+\def\lemtext{Lemma}
+\def\proptext{Proposition}
+\def\cortext{Corollary}
+\def\exotext{Exercise}
+\def\exempletext{Example}
+\def\rqtext{Remark}
+\def\warningtext{Warning}
 
-\newcommand{\colorboxed}{false}
-\newcommand{\notetext}{Note}
+\def\colorboxed{false}
+\def\notetext{Note}
 
 \DeclareOption{EN}{
 	%already in English so chill
 }
 
 \DeclareOption{FR}{
-	\renewcommand{\lang}{french}
+	\def\lang{french}
 
-	\renewcommand{\deftext}{Définition}
-	\renewcommand{\thmtext}{Théorème}
-	\renewcommand{\lemtext}{Lemme}
-	\renewcommand{\proptext}{Proposition}
-	\renewcommand{\cortext}{Corollaire}
-	\renewcommand{\exotext}{Exercice}
-	\renewcommand{\exempletext}{Exemple}
-	\renewcommand{\rqtext}{Remarque}
-	\renewcommand{\warningtext}{Attention}
-	\renewcommand{\notetext}{Note}
+	\def\deftext{Définition}
+	\def\thmtext{Théorème}
+	\def\lemtext{Lemme}
+	\def\proptext{Proposition}
+	\def\cortext{Corollaire}
+	\def\exotext{Exercice}
+	\def\exempletext{Exemple}
+	\def\rqtext{Remarque}
+	\def\warningtext{Attention}
+	\def\notetext{Note}
 }
 
 % ---------------- tcolorbox ------------------
 \DeclareOption{colorbox}{
-	\renewcommand{\colorboxed}{true}
+	\def\colorboxed{true}
 } %TODO: meilleur fonctionnement?
 
 % Unknown options
@@ -55,6 +55,13 @@
 %---------------packages-------------
 
 %Mise en page et texte
+\RequirePackage{hyperref}		% Pour inclure des liens dans le document
+\hypersetup{
+	colorlinks=true,
+	linkcolor=black,
+	filecolor=magenta,
+	urlcolor=Navy,
+}
 \RequirePackage{cmap} % Permet de pouvoir cc/cp, search dans le pdf
 \RequirePackage[svgnames]{xcolor} % Colorer du texte
 \RequirePackage{marginnote}
@@ -73,34 +80,22 @@
 \RequirePackage{enumitem} % Permet de modifier les listes à puces
 \setlist{nosep} % enlève la séparation excessive des listes
 \RequirePackage{color}		% Permet d'inclure du texte en couleur
-\RequirePackage{hyperref}		% Pour inclure des liens dans le document
-\hypersetup{
-	colorlinks=true,
-	linkcolor=black,
-	filecolor=magenta,
-	urlcolor=Navy,
-}
 \RequirePackage[\lang]{babel}	% Précise la langue du document
 \RequirePackage[T1]{fontenc}	% Précise la façon dont le document actuel est encodé
 \RequirePackage[utf8]{inputenc}	% Précise comment le texte est saisi: cela permet de tapper directement les accents
 \RequirePackage{eurosym}		%Pour pouvoir utiliser le symbole \euro{}
 
 %Pour les mathématiques
-\RequirePackage{amsmath,amssymb,amsfonts,amsthm} % Permet d'écrire des symboles mathématiques
+\RequirePackage{amsthm,amsmath,amssymb,amsfonts} % Permet d'écrire des symboles mathématiques
+\RequirePackage{thmtools} % Solve cref problem see https://tex.stackexchange.com/questions/19104/cleveref-with-counters-with-same-name
 \RequirePackage{dsfont}		% Permet d'avoir certains alphabets utiles en mathématiques.
 \RequirePackage{manfnt}		% Permet d'utiliser le panneau virage dangereux pour le warning (\dbend ou \textdbend)
 \RequirePackage{units}		% Permet de taper les unités correctement
 \RequirePackage[makeroom]{cancel} % Permet de rayer des expressions
-% \RequirePackage{mathrsfs} % not used
 
 %Pour l'informatique
-% \RequirePackage{algorithmic}
 \RequirePackage[linesnumbered,lined,ruled,vlined,\lang]{algorithm2e}
 \definecolor{darkWhite}{rgb}{0.94,0.94,0.94} % Utilisé par les options du package:
-\RequirePackage{listings}		% Permet d'insérer du code dans le fichier % TODO: remplacer par tcolorbox
-
-% nice ref:
-\RequirePackage[noabbrev]{cleveref}
 
 %Graphiques, tableaux et illustrations
 \RequirePackage{graphicx}		% Permet d'inclure des images
@@ -124,50 +119,7 @@
 \RequirePackage{calc} % Important : permet des opération arithmétiques dans les instructions
 \RequirePackage{etoolbox} % Important : permet de faire des if dans le code latex (see colorboxed).
 
-
-\lstset{			% Changer l'option langage pour adapter la coloration syntaxique
-aboveskip=3mm,		% Ces options se trouvent à l'addresse: borntocode.fr/latex-comment-insere-et-customiser-du-code-source/
-belowskip=-2mm,
-backgroundcolor=\color{darkWhite},
-basicstyle=\footnotesize,
-breakatwhitespace=false,
-breaklines=true,
-captionpos=b,
-commentstyle=\color{red},
-deletekeywords={...},
-escapeinside={\%*}{*)},
-extendedchars=true,
-framexleftmargin=16pt,
-framextopmargin=3pt,
-framexbottommargin=6pt,
-frame=tb,
-keepspaces=true,
-keywordstyle=\color{blue},
-language=Python,
-literate=
-{²}{{\textsuperscript{2}}}1
-{é}{{\'{e}}}1
-{è}{{\`{e}}}1
-{É}{{\'{E}}}1
-{Ê}{{\^{E}}}1
-{â}{{\^{a}}}1
-{à}{{\`{a}}}1
-{À}{{\`{A}}}1
-{ç}{{\c{c}}}1
-{ô}{{\^{o}}}1,
-morekeywords={*,...},
-numbers=left,
-numbersep=10pt,
-numberstyle=\tiny\color{black},
-rulecolor=\color{black},
-showspaces=false,
-showstringspaces=false,
-showtabs=false,
-stepnumber=1,
-stringstyle=\color{gray},
-tabsize=4,
-title=\lstname,
-}
+\RequirePackage[noabbrev]{cleveref} % nice ref
 
 %Mise en place des options pour la mise en page
 % \RequirePackage{setspace} % Modifier l'espace entre les lignes.
@@ -202,14 +154,29 @@ title=\lstname,
 % \B}
 %
 
+% \newcommand\myTheoremEnvironments{
+% 				theorem/theorems,
+% }
+% \foreachpair* \myTheoremEnvironments
+% {
+% 				\newtheorem{#1}[baseTheorem]{\titlecap{#1}}
+% 				\crefname{#1}{#1}{#2}
+% }
+
 \newtheorem{thm}{\thmtext}[section]
+% \Crefname{thm}{\thmtext}{\thmtext+s}
 \newtheorem{lem}[thm]{\lemtext}
+% \Crefname{lem}{\lemtext}{\lemtext+s}
 \newtheorem{prop}[thm]{\proptext}
-\newtheorem{cor}{\cortext}[thm]
+% \Crefname{prop}{\proptext}{\proptext+s}
+\newtheorem{cor}[thm]{\cortext}
+% \Crefname{cor}{\cortext}{\cortext+s}
+
 
 
 % \theoremstyle{remark}
 \newtheorem*{remarque}{\rqtext}
+\newtheorem{obs}{Observation}[section]
 
 \theoremstyle{definition}
 \newtheorem{defi}{\deftext}[section]
@@ -251,6 +218,9 @@ title=\lstname,
 
 \ifbool{\colorboxed}{
 \newtcolorbox{abstract}{arc=0ex, colback=softGruvPurple, colframe=gruvPurple, title={Abstract}, fonttitle=\normalfont\bfseries, fontupper=\normalfont, breakable, enhanced}
+\newtcolorbox{important}{arc=0ex, colback=softGruvRed, colframe=gruvRed, title={}, fontupper=\normalfont, breakable, enhanced}
+\newtcolorbox{tcbalign}{arc=0ex, colback=softGruvRed, colframe=gruvRed, breakable, ams align}
+\newtcolorbox{tcbalign*}{arc=0ex, colback=softGruvRed, colframe=gruvRed, breakable, ams align*}
 	\tcolorboxenvironment{thm}{arc=1ex, colback=softGruvGreen, colframe=softGruvGreen, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
 	\tcolorboxenvironment{lem}{arc=1ex, colback=softGruvGreen, colframe=softGruvGreen, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
 	\tcolorboxenvironment{prop}{arc=1ex, colback=softGruvGreen, colframe=softGruvGreen, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
@@ -258,6 +228,7 @@ title=\lstname,
 	\tcolorboxenvironment{exo}{arc=0ex, colback=softGruvGrey, colframe=softGruvGrey, colframe=grey, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
 	\tcolorboxenvironment{exemple}{arc=0ex, colback=softGruvGrey, colframe=softGruvGrey, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
 	\tcolorboxenvironment{remarque}{arc=0ex, colback=softGruvGrey, colframe=softGruvGrey, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
+	\tcolorboxenvironment{obs}{arc=0ex, colback=softGruvGrey, colframe=softGruvGrey, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
 	\tcolorboxenvironment{defi}{arc=1ex, colback=softGruvBlue, colframe=softGruvBlue, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
 	\tcolorboxenvironment{proof}{blanker,breakable,left=5mm,before skip=10pt,after skip=10pt,borderline west={1mm}{0pt}{grey}}
 	\tcolorboxenvironment{custom}{arc=0ex, colback=softGruvGrey, colframe=softGruvGrey, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
