@@ -1,10 +1,31 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{manuscriptron}[2025-03-10, made by Tron]
 
+% gruvbox colors
+\definecolor{gruvRed}{HTML}{CC241D}
+\definecolor{gruvGreen}{HTML}{98971A}
+\definecolor{gruvYellow}{HTML}{D79921}
+\definecolor{gruvBlue}{HTML}{458588}
+\definecolor{gruvPurple}{HTML}{B16286}
+\definecolor{gruvAqua}{HTML}{689D6A}
+\definecolor{gruvOrange}{HTML}{D65D0E}
+\definecolor{gruvGrey}{HTML}{7c6f64}
+
+\colorlet{softGruvRed}{gruvRed!10}
+\colorlet{softGruvGreen}{gruvGreen!10}
+\colorlet{softGruvYellow}{gruvYellow!10}
+\colorlet{softGruvBlue}{gruvBlue!10}
+\colorlet{softGruvPurple}{gruvPurple!10}
+\colorlet{softGruvAqua}{gruvAqua!10}
+\colorlet{softGruvOrange}{gruvOrange!10}
+\colorlet{softGruvGrey}{gruvGrey!10}
+\colorlet{warningGruvRed}{gruvRed!60}
+
+
 %----------------options--------------
 
 % Redefines emph to be bold and italic
-\DeclareEmphSequence{\bfseries\itshape}
+\DeclareEmphSequence{\color{gruvOrange}\itshape}
 
 %Macro pour les langues
 \def\lang{english}
@@ -198,25 +219,6 @@
 
 
 % ------------------ tcolorbox -------------------
-% gruvbox colors
-\definecolor{gruvRed}{HTML}{CC241D}
-\definecolor{gruvGreen}{HTML}{98971A}
-\definecolor{gruvYellow}{HTML}{D79921}
-\definecolor{gruvBlue}{HTML}{458588}
-\definecolor{gruvPurple}{HTML}{B16286}
-\definecolor{gruvAqua}{HTML}{689D6A}
-\definecolor{gruvOrange}{HTML}{D65D0E}
-\definecolor{gruvGrey}{HTML}{7c6f64}
-
-\colorlet{softGruvRed}{gruvRed!10}
-\colorlet{softGruvGreen}{gruvGreen!10}
-\colorlet{softGruvYellow}{gruvYellow!10}
-\colorlet{softGruvBlue}{gruvBlue!10}
-\colorlet{softGruvPurple}{gruvPurple!10}
-\colorlet{softGruvAqua}{gruvAqua!10}
-\colorlet{softGruvOrange}{gruvOrange!10}
-\colorlet{softGruvGrey}{gruvGrey!10}
-\colorlet{warningGruvRed}{gruvRed!60}
 
 \ifbool{\colorboxed}{
 \newtcolorbox{abstract}{arc=0ex, colback=softGruvPurple, colframe=gruvPurple, title={Abstract}, fonttitle=\normalfont\bfseries, fontupper=\normalfont, breakable, enhanced}
