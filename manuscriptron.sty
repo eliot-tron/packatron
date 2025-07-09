@@ -101,7 +101,7 @@
 \RequirePackage[twoside]{fancyhdr} %Police/présentation, notamment en-tête et pied de pages
 % \setlength{\headheight}{2cm}
 \RequirePackage{enumitem} % Permet de modifier les listes à puces
-\setlist{nosep} % enlève la séparation excessive des listes
+% \setlist{nosep} % enlève la séparation excessive des listes
 \RequirePackage{color}		% Permet d'inclure du texte en couleur
 \RequirePackage[\lang]{babel}	% Précise la langue du document
 \RequirePackage[T1]{fontenc}	% Précise la façon dont le document actuel est encodé
@@ -152,8 +152,10 @@
 % \fancyhead[RE]{\thechaptername}
 \fancyhead{}
 \fancyhead[LE,RO]{\thepage}
-\fancyhead[RE]{\parbox[t]{0.8\textwidth}{\nouppercase{\leftmark}}}
-\fancyhead[LO]{\parbox[t]{0.8\textwidth}{\nouppercase{\rightmark}}}
+\fancyhead[RE]{\parbox[b]{0.8\textwidth}{\raggedleft\nouppercase{\leftmark}}}
+\fancyhead[LO]{\parbox[b]{0.8\textwidth}{\raggedright\nouppercase{\rightmark}}}
+% \fancyhead[RE]{{\nouppercase{\leftmark}}}
+% \fancyhead[LO]{{\nouppercase{\rightmark}}}
 % \fancyhead[R]{\sectionname}
 % \fancyhead[L]{}
 \fancyfoot{}
