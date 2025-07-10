@@ -1,15 +1,28 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{manuscriptron}[2025-03-10, made by Tron]
 
+
+% batlow colors
+\definecolor{batlow-1}{HTML}{011959}
+\definecolor{batlow-29}{HTML}{103F60}
+\definecolor{batlow-58}{HTML}{1C5A62}
+\definecolor{batlow-86}{HTML}{3C6D56}
+\definecolor{batlow-114}{HTML}{687B3E}
+\definecolor{batlow-143}{HTML}{9D892B}
+\definecolor{batlow-171}{HTML}{D29343}
+\definecolor{batlow-199}{HTML}{F8A17B}
+\definecolor{batlow-228}{HTML}{FDB7BC}
+\definecolor{batlow-256}{HTML}{FACCFA}
+
 % gruvbox colors
-\definecolor{gruvRed}{HTML}{CC241D}
-\definecolor{gruvGreen}{HTML}{98971A}
+   \definecolor{gruvRed}{HTML}{CC241D}
+ \definecolor{gruvGreen}{HTML}{98971A}
 \definecolor{gruvYellow}{HTML}{D79921}
-\definecolor{gruvBlue}{HTML}{458588}
+  \definecolor{gruvBlue}{HTML}{458588}
 \definecolor{gruvPurple}{HTML}{B16286}
-\definecolor{gruvAqua}{HTML}{689D6A}
+  \definecolor{gruvAqua}{HTML}{689D6A}
 \definecolor{gruvOrange}{HTML}{D65D0E}
-\definecolor{gruvGrey}{HTML}{7c6f64}
+  \definecolor{gruvGrey}{HTML}{7c6f64}
 
 \colorlet{softGruvRed}{gruvRed!10}
 \colorlet{softGruvGreen}{gruvGreen!10}
@@ -25,7 +38,7 @@
 %----------------options--------------
 
 % Redefines emph to be bold and italic
-\DeclareEmphSequence{\color{gruvOrange}\itshape}
+% \DeclareEmphSequence{\color{gruvOrange}\itshape}
 
 %Macro pour les langues
 \def\lang{english}
@@ -81,8 +94,9 @@
 \hypersetup{
 	colorlinks=true,
 	linkcolor=black,
-	filecolor=magenta,
-	urlcolor=Navy,
+	citecolor=gruvGreen,
+	filecolor=gruvRed,
+	urlcolor=gruvBlue,
 }
 \RequirePackage{cmap} % Permet de pouvoir cc/cp, search dans le pdf
 \RequirePackage[svgnames]{xcolor} % Colorer du texte
