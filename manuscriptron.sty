@@ -34,6 +34,17 @@
 \colorlet{softGruvGrey}{gruvGrey!10}
 \colorlet{warningGruvRed}{gruvRed!60}
 
+\colorlet{colAbstract}{gruvAqua}
+\colorlet{colSoftAbstract}{colAbstract!10}
+\colorlet{colImportant}{gruvRed}
+\colorlet{colSoftImportant}{colImportant!10}
+\colorlet{colThm}{gruvGreen}
+\colorlet{colSoftThm}{colThm!10}
+\colorlet{colNote}{gruvGrey}
+\colorlet{colSoftNote}{colNote!10}
+\colorlet{colDefi}{gruvBlue}
+\colorlet{colSoftDefi}{colDefi!10}
+\colorlet{colProof}{grey!10}
 
 %----------------options--------------
 
@@ -102,17 +113,24 @@
 \RequirePackage[svgnames]{xcolor} % Colorer du texte
 \RequirePackage{marginnote}
 \RequirePackage{sidenotes}
-% \RequirePackage{geometry}	% Précise les marges du document
-% \geometry{
-% 				a4paper,
-% 				top=2.5cm,
-% 				bottom=2.5cm,
-% 				inner=3cm,
-% 				outer=5cm
-% 				marginparsep=0.5cm,
-% }
+\RequirePackage{geometry}	% Précise les marges du document
+\geometry{
+				a4paper,
+				% twoside,
+				top=4cm,
+				bottom=3cm,
+				inner=3cm,
+				outer=4cm,
+				% headsep=1cm,
+				headheight=50pt,
+				% marginparsep=0.5cm,
+}
 \RequirePackage[most]{tcolorbox} % Permet de faire des boites de couleur autours des environnements
+\RequirePackage[Lenny]{fncychap}
+\ChNameVar{\bfseries\huge\usefont{OT1}{phv}{m}{n}\selectfont}
+\ChTitleVar{\Huge\bfseries}
 \RequirePackage[twoside]{fancyhdr} %Police/présentation, notamment en-tête et pied de pages
+\RequirePackage{emptypage}
 % \setlength{\headheight}{2cm}
 \RequirePackage{enumitem} % Permet de modifier les listes à puces
 % \setlist{nosep} % enlève la séparation excessive des listes
@@ -165,14 +183,15 @@
 \pagestyle{fancy}
 % \fancyhead[RE]{\thechaptername}
 \fancyhead{}
-\fancyhead[LE,RO]{\thepage}
-\fancyhead[RE]{\parbox[b]{0.8\textwidth}{\raggedleft\nouppercase{\leftmark}}}
-\fancyhead[LO]{\parbox[b]{0.8\textwidth}{\raggedright\nouppercase{\rightmark}}}
+% \fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\footnotesize\parbox[b]{0.9\headwidth}{\raggedleft\nouppercase{\leftmark}}}
+\fancyhead[LO]{\footnotesize\parbox[b]{0.9\headwidth}{\raggedright\nouppercase{\rightmark}}}
 % \fancyhead[RE]{{\nouppercase{\leftmark}}}
 % \fancyhead[LO]{{\nouppercase{\rightmark}}}
 % \fancyhead[R]{\sectionname}
 % \fancyhead[L]{}
 \fancyfoot{}
+\fancyfoot[LE,RO]{\thepage}
 % \setlength{\headheight}{3\baselineskip}
 \allowdisplaybreaks %Pour couper les environnements maths sur plusieurs pages au besoin
 
@@ -237,23 +256,23 @@
 % ------------------ tcolorbox -------------------
 
 \ifbool{\colorboxed}{
-\newtcolorbox{abstract}{arc=0ex, colback=softGruvPurple, colframe=gruvPurple, title={Abstract}, fonttitle=\normalfont\bfseries, fontupper=\normalfont, breakable, enhanced}
-\newtcolorbox{important}{arc=0ex, colback=softGruvRed, colframe=gruvRed, title={}, fontupper=\normalfont, breakable, enhanced}
-\newtcolorbox{tcbalign}{arc=0ex, colback=softGruvRed, colframe=gruvRed, breakable, ams align}
-\newtcolorbox{tcbalign*}{arc=0ex, colback=softGruvRed, colframe=gruvRed, breakable, ams align*}
-	\tcolorboxenvironment{thm}{arc=1ex, colback=softGruvGreen, colframe=softGruvGreen, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
-	\tcolorboxenvironment{lem}{arc=1ex, colback=softGruvGreen, colframe=softGruvGreen, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
-	\tcolorboxenvironment{prop}{arc=1ex, colback=softGruvGreen, colframe=softGruvGreen, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
-	\tcolorboxenvironment{cor}{arc=1ex, colback=softGruvGreen, colframe=softGruvGreen, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
-	\tcolorboxenvironment{exo}{arc=0ex, colback=softGruvGrey, colframe=softGruvGrey, colframe=grey, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
-	\tcolorboxenvironment{exemple}{arc=0ex, colback=softGruvGrey, colframe=softGruvGrey, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
-	\tcolorboxenvironment{remarque}{arc=0ex, colback=softGruvGrey, colframe=softGruvGrey, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
-	\tcolorboxenvironment{obs}{arc=0ex, colback=softGruvGrey, colframe=softGruvGrey, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
-	\tcolorboxenvironment{defi}{arc=1ex, colback=softGruvBlue, colframe=softGruvBlue, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
-	\tcolorboxenvironment{proof}{blanker,breakable,left=5mm,before skip=10pt,after skip=10pt,borderline west={1mm}{0pt}{grey}}
-	\tcolorboxenvironment{custom}{arc=0ex, colback=softGruvGrey, colframe=softGruvGrey, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
+\newtcolorbox{abstract}{arc=0ex, colback=colAbstract!10, colframe=colAbstract, title={Abstract}, fonttitle=\normalfont\bfseries, fontupper=\normalfont, breakable, enhanced}
+\newtcolorbox{important}{arc=0ex, colback=colSoftImportant, colframe=colImportant, title={}, fontupper=\normalfont, breakable, enhanced}
+\newtcolorbox{tcbalign}{arc=0ex, colback=colSoftImportant, colframe=colImportant, breakable, ams align}
+\newtcolorbox{tcbalign*}{arc=0ex, colback=colSoftImportant, colframe=colImportant, breakable, ams align*}
+	\tcolorboxenvironment{thm}{arc=1ex, colback=colSoftThm, colframe=colSoftThm, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
+	\tcolorboxenvironment{lem}{arc=1ex, colback=colSoftThm, colframe=colSoftThm, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
+	\tcolorboxenvironment{prop}{arc=1ex, colback=colSoftThm, colframe=colSoftThm, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
+	\tcolorboxenvironment{cor}{arc=1ex, colback=colSoftThm, colframe=colSoftThm, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
+	\tcolorboxenvironment{exo}{arc=0ex, colback=colSoftNote, colframe=colSoftNote, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
+	\tcolorboxenvironment{exemple}{arc=0ex, colback=colSoftNote, colframe=colSoftNote, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
+	\tcolorboxenvironment{remarque}{arc=0ex, colback=colSoftNote, colframe=colSoftNote, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
+	\tcolorboxenvironment{obs}{arc=0ex, colback=colSoftNote, colframe=colSoftNote, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
+	\tcolorboxenvironment{defi}{arc=1ex, colback=colSoftDefi, colframe=colSoftDefi, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
+	\tcolorboxenvironment{proof}{blanker,breakable,left=5mm,before skip=10pt,after skip=10pt,borderline west={1mm}{0pt}{colProof}}
+	\tcolorboxenvironment{custom}{arc=0ex, colback=colSoftNote, colframe=colSoftNote, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
 	\renewenvironment{warning}{}{}
-	\tcolorboxenvironment{warning}{arc=0ex, colback=softGruvRed, colframe=softGruvRed, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, attach boxed title to top center={yshift=-2mm}, title=\warningtext, enhanced, colbacktitle=warningGruvRed}
+	\tcolorboxenvironment{warning}{arc=0ex, colback=colSoftImportant, colframe=colSoftImportant, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, attach boxed title to top center={yshift=-2mm}, title=\warningtext, enhanced, colbacktitle=colImportant!60}
 	\renewcommand{\exosol}[2]{\begin{exo} #1 \tcbline \textit{Solution.} #2 \end{exo}}
 	\newtcolorbox{note}[1]{arc=0ex, colback=softGruvBlue, colframe=gruvBlue, title=#1., fonttitle=\normalfont\bfseries, fontupper=\normalfont}
 	\renewcommand{\marnote}[2][\notetext]{
