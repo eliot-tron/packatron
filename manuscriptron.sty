@@ -143,6 +143,7 @@
 %Pour les mathématiques
 \RequirePackage{amsthm,amsmath,amssymb,amsfonts} % Permet d'écrire des symboles mathématiques
 \RequirePackage{thmtools} % Solve cref problem see https://tex.stackexchange.com/questions/19104/cleveref-with-counters-with-same-name
+% \RequirePackage[thmtools-compat]{keytheorems}
 \RequirePackage{dsfont}		% Permet d'avoir certains alphabets utiles en mathématiques.
 \RequirePackage{manfnt}		% Permet d'utiliser le panneau virage dangereux pour le warning (\dbend ou \textdbend)
 \RequirePackage{units}		% Permet de taper les unités correctement
@@ -175,6 +176,9 @@
 \RequirePackage{etoolbox} % Important : permet de faire des if dans le code latex (see colorboxed).
 
 \RequirePackage[noabbrev, capitalise]{cleveref} % nice ref
+
+\RequirePackage{imakeidx}
+\RequirePackage{minitoc}
 
 %Mise en place des options pour la mise en page
 % \RequirePackage{setspace} % Modifier l'espace entre les lignes.
@@ -233,13 +237,12 @@
 
 
 % \theoremstyle{remark}
-\newtheorem*{remarque}{\rqtext}
-\newtheorem{obs}{Observation}[section]
-
 \theoremstyle{definition}
 \newtheorem{defi}{\deftext}[section]
 \newtheorem{exemple}{\exempletext}[section]
 \newtheorem{exo}{\exotext}[section]
+\newtheorem*{remarque}{\rqtext}
+\newtheorem{obs}{Observation}[section]
 \theoremstyle{remark}
 \newtheorem*{solution}{Solution}
 
@@ -260,19 +263,19 @@
 \newtcolorbox{important}{arc=0ex, colback=colSoftImportant, colframe=colImportant, title={}, fontupper=\normalfont, breakable, enhanced}
 \newtcolorbox{tcbalign}{arc=0ex, colback=colSoftImportant, colframe=colImportant, breakable, ams align}
 \newtcolorbox{tcbalign*}{arc=0ex, colback=colSoftImportant, colframe=colImportant, breakable, ams align*}
-	\tcolorboxenvironment{thm}{arc=1ex, colback=colSoftThm, colframe=colSoftThm, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
-	\tcolorboxenvironment{lem}{arc=1ex, colback=colSoftThm, colframe=colSoftThm, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
-	\tcolorboxenvironment{prop}{arc=1ex, colback=colSoftThm, colframe=colSoftThm, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
-	\tcolorboxenvironment{cor}{arc=1ex, colback=colSoftThm, colframe=colSoftThm, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
+	\tcolorboxenvironment{thm}{arc=0ex, colback=colSoftThm, colframe=colThm, left=3pt, right=3pt, top=3pt, bottom=2pt,  enhanced}
+	\tcolorboxenvironment{lem}{arc=0ex, colback=colSoftThm, colframe=colSoftThm, left=3pt, right=3pt, top=3pt, bottom=2pt,  enhanced}
+	\tcolorboxenvironment{prop}{arc=0ex, colback=colSoftThm, colframe=colSoftThm, left=3pt, right=3pt, top=3pt, bottom=2pt,  enhanced}
+	\tcolorboxenvironment{cor}{arc=0ex, colback=colSoftThm, colframe=colSoftThm, left=3pt, right=3pt, top=3pt, bottom=2pt,  enhanced}
 	\tcolorboxenvironment{exo}{arc=0ex, colback=colSoftNote, colframe=colSoftNote, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
 	\tcolorboxenvironment{exemple}{arc=0ex, colback=colSoftNote, colframe=colSoftNote, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
 	\tcolorboxenvironment{remarque}{arc=0ex, colback=colSoftNote, colframe=colSoftNote, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
 	\tcolorboxenvironment{obs}{arc=0ex, colback=colSoftNote, colframe=colSoftNote, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
-	\tcolorboxenvironment{defi}{arc=1ex, colback=colSoftDefi, colframe=colSoftDefi, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
+	\tcolorboxenvironment{defi}{arc=0ex, colback=colSoftDefi, colframe=colDefi, left=3pt, right=3pt, top=3pt, bottom=2pt,  enhanced}
 	\tcolorboxenvironment{proof}{blanker,breakable,left=5mm,before skip=10pt,after skip=10pt,borderline west={1mm}{0pt}{colProof}}
 	\tcolorboxenvironment{custom}{arc=0ex, colback=colSoftNote, colframe=colSoftNote, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
 	\renewenvironment{warning}{}{}
-	\tcolorboxenvironment{warning}{arc=0ex, colback=colSoftImportant, colframe=colSoftImportant, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, attach boxed title to top center={yshift=-2mm}, title=\warningtext, enhanced, colbacktitle=colImportant!60}
+	\tcolorboxenvironment{warning}{arc=0ex, colback=colSoftImportant, colframe=colImportant!60, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, attach boxed title to top center={yshift=-2mm}, title=\warningtext, enhanced, colbacktitle=colImportant!60}
 	\renewcommand{\exosol}[2]{\begin{exo} #1 \tcbline \textit{Solution.} #2 \end{exo}}
 	\newtcolorbox{note}[1]{arc=0ex, colback=softGruvBlue, colframe=gruvBlue, title=#1., fonttitle=\normalfont\bfseries, fontupper=\normalfont}
 	\renewcommand{\marnote}[2][\notetext]{
