@@ -242,6 +242,7 @@
 \newtheorem{exemple}{\exempletext}[section]
 \newtheorem{exo}{\exotext}[section]
 \newtheorem*{remarque}{\rqtext}
+\newtheorem*{notation}{Notation}
 \newtheorem{obs}{Observation}[section]
 \theoremstyle{remark}
 \newtheorem*{solution}{Solution}
@@ -259,7 +260,7 @@
 % ------------------ tcolorbox -------------------
 
 \ifbool{\colorboxed}{
-\newtcolorbox{abstract}{arc=0ex, colback=colAbstract!10, colframe=colAbstract, title={Abstract}, fonttitle=\normalfont\bfseries, fontupper=\normalfont, breakable, enhanced}
+\newtcolorbox{abstract}{arc=0ex, colback=colAbstract!10, colframe=colAbstract, title={Abstract}, fonttitle=\normalfont\bfseries, fontupper=\normalfont, enhanced}
 \newtcolorbox{important}{arc=0ex, colback=colSoftImportant, colframe=colImportant, title={}, fontupper=\normalfont, breakable, enhanced}
 \newtcolorbox{tcbalign}{arc=0ex, colback=colSoftImportant, colframe=colImportant, breakable, ams align}
 \newtcolorbox{tcbalign*}{arc=0ex, colback=colSoftImportant, colframe=colImportant, breakable, ams align*}
@@ -270,6 +271,7 @@
 	\tcolorboxenvironment{exo}{arc=0ex, colback=colSoftNote, colframe=colSoftNote, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
 	\tcolorboxenvironment{exemple}{arc=0ex, colback=colSoftNote, colframe=colSoftNote, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
 	\tcolorboxenvironment{remarque}{arc=0ex, colback=colSoftNote, colframe=colSoftNote, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
+	\tcolorboxenvironment{notation}{arc=0ex, colback=colSoftNote, colframe=colSoftNote, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
 	\tcolorboxenvironment{obs}{arc=0ex, colback=colSoftNote, colframe=colSoftNote, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
 	\tcolorboxenvironment{defi}{arc=0ex, colback=colSoftDefi, colframe=colDefi, left=3pt, right=3pt, top=3pt, bottom=2pt,  enhanced}
 	\tcolorboxenvironment{proof}{blanker,breakable,left=5mm,before skip=10pt,after skip=10pt,borderline west={1mm}{0pt}{colProof}}
