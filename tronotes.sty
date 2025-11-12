@@ -1,0 +1,550 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{tronotes}[2025-11-12, made by Tron]
+
+
+\RequirePackage[svgnames]{xcolor} % Colorer du texte
+
+% batlow colors
+\definecolor{batlow-1}{HTML}{011959}
+\definecolor{batlow-29}{HTML}{103F60}
+\definecolor{batlow-58}{HTML}{1C5A62}
+\definecolor{batlow-86}{HTML}{3C6D56}
+\definecolor{batlow-114}{HTML}{687B3E}
+\definecolor{batlow-143}{HTML}{9D892B}
+\definecolor{batlow-171}{HTML}{D29343}
+\definecolor{batlow-199}{HTML}{F8A17B}
+\definecolor{batlow-228}{HTML}{FDB7BC}
+\definecolor{batlow-256}{HTML}{FACCFA}
+
+% gruvbox colors
+   \definecolor{gruvRed}{HTML}{CC241D}
+ \definecolor{gruvGreen}{HTML}{98971A}
+\definecolor{gruvYellow}{HTML}{D79921}
+  \definecolor{gruvBlue}{HTML}{458588}
+\definecolor{gruvPurple}{HTML}{B16286}
+  \definecolor{gruvAqua}{HTML}{689D6A}
+\definecolor{gruvOrange}{HTML}{D65D0E}
+  \definecolor{gruvGrey}{HTML}{7c6f64}
+
+\colorlet{softGruvRed}{gruvRed!10}
+\colorlet{softGruvGreen}{gruvGreen!10}
+\colorlet{softGruvYellow}{gruvYellow!10}
+\colorlet{softGruvBlue}{gruvBlue!10}
+\colorlet{softGruvPurple}{gruvPurple!10}
+\colorlet{softGruvAqua}{gruvAqua!10}
+\colorlet{softGruvOrange}{gruvOrange!10}
+\colorlet{softGruvGrey}{gruvGrey!10}
+\colorlet{warningGruvRed}{gruvRed!60}
+
+\colorlet{colAbstract}{gruvAqua}
+\colorlet{colSoftAbstract}{colAbstract!10}
+\colorlet{colImportant}{gruvRed}
+\colorlet{colSoftImportant}{colImportant!10}
+\colorlet{colThm}{gruvGreen}
+\colorlet{colSoftThm}{colThm!10}
+\colorlet{colNote}{gruvGrey}
+\colorlet{colSoftNote}{colNote!10}
+\colorlet{colDefi}{gruvBlue}
+\colorlet{colSoftDefi}{colDefi!10}
+\colorlet{colProof}{gray!10}
+
+%----------------options--------------
+
+% Redefines emph to be bold and italic
+% \DeclareEmphSequence{\color{gruvOrange}\itshape}
+
+%Macro pour les langues
+\def\lang{english}
+\def\deftext{Definition}
+\def\thmtext{Theorem}
+\def\lemtext{Lemma}
+\def\proptext{Proposition}
+\def\cortext{Corollary}
+\def\exotext{Exercise}
+\def\exempletext{Example}
+\def\rqtext{Remark}
+\def\warningtext{Warning}
+
+\def\colorboxed{false}
+\def\notetext{Note}
+
+\DeclareOption{EN}{
+	%already in English so chill
+}
+
+\DeclareOption{FR}{
+	\def\lang{french}
+
+	\def\deftext{Définition}
+	\def\thmtext{Théorème}
+	\def\lemtext{Lemme}
+	\def\proptext{Proposition}
+	\def\cortext{Corollaire}
+	\def\exotext{Exercice}
+	\def\exempletext{Exemple}
+	\def\rqtext{Remarque}
+	\def\warningtext{Attention}
+	\def\notetext{Note}
+}
+
+% ---------------- tcolorbox ------------------
+\DeclareOption{colorbox}{
+	\def\colorboxed{true}
+} %TODO: meilleur fonctionnement?
+
+% Unknown options
+\DeclareOption*{\PackageWarning{tronotes}{Unknown ‘\CurrentOption’}}
+
+\ProcessOptions\relax
+
+
+
+%---------------packages-------------
+
+\RequirePackage{csquotes}
+\RequirePackage[
+natbib,
+backend=biber,
+style=numeric,
+sorting=nyt,
+backref=true,
+maxbibnames=50,
+url=false,
+eprint=false,
+]{biblatex}
+\RequirePackage{import}
+% To use cross referencing:
+\RequirePackage{xr}
+\RequirePackage{subfiles}
+% \ifSubfilesClassLoaded{%
+% \externaldocument{\subfix{Manuscript}}
+% }{} % we have no 'else' action
+% For the appendices:
+\RequirePackage{appendix}
+\RequirePackage{rotating} % sidewaystable
+
+% Inkscape in LaTeX
+\RequirePackage{xifthen}
+\RequirePackage{pdfpages}
+\RequirePackage{transparent}
+
+% Include Inkscape export
+\newcommand{\incfig}[3][./]{%
+				\def\svgwidth{#2\columnwidth}
+			\subfile{#1/#3.pdf_tex}
+}
+
+% nice todos
+\RequirePackage[colorinlistoftodos]{todonotes}
+% Show labels of refs
+% \RequirePackage[draft]{showkeys}
+
+% no footnote breaks
+\interfootnotelinepenalty=10000
+
+%Mise en page et texte
+\RequirePackage{microtype} % Better spaces between letters and words, and more
+\RequirePackage{hyperref}		% Pour inclure des liens dans le document
+\hypersetup{
+	colorlinks=true,
+	linkcolor=black,
+	citecolor=gruvGreen,
+	filecolor=gruvRed,
+	urlcolor=gruvBlue,
+}
+\RequirePackage{cmap} % Permet de pouvoir cc/cp, search dans le pdf
+\RequirePackage{marginnote}
+\RequirePackage{sidenotes}
+\RequirePackage{geometry}	% Précise les marges du document
+\geometry{
+				a4paper,
+				% twoside,
+				top=4cm,
+				bottom=3cm,
+				inner=3cm,
+				outer=4cm,
+				% headsep=1cm,
+				headheight=50pt,
+				% marginparsep=0.5cm,
+}
+\RequirePackage[most]{tcolorbox} % Permet de faire des boites de couleur autours des environnements
+\RequirePackage[Lenny]{fncychap}
+\ChNameVar{\bfseries\huge\usefont{OT1}{phv}{m}{n}\selectfont}
+\ChTitleVar{\Huge\bfseries}
+\RequirePackage{fancyhdr} %Police/présentation, notamment en-tête et pied de pages
+\RequirePackage{emptypage}
+% \setlength{\headheight}{2cm}
+\RequirePackage{enumitem} % Permet de modifier les listes à puces
+% \setlist{nosep} % enlève la séparation excessive des listes
+\RequirePackage{color}		% Permet d'inclure du texte en couleur
+\RequirePackage[\lang]{babel}	% Précise la langue du document
+\RequirePackage[T1]{fontenc}	% Précise la façon dont le document actuel est encodé
+\RequirePackage[utf8]{inputenc}	% Précise comment le texte est saisi: cela permet de tapper directement les accents
+\RequirePackage{eurosym}		%Pour pouvoir utiliser le symbole \euro{}
+
+%Pour les mathématiques
+\RequirePackage{amsthm,amsmath,amssymb,amsfonts} % Permet d'écrire des symboles mathématiques
+\RequirePackage{thmtools} % Solve cref problem see https://tex.stackexchange.com/questions/19104/cleveref-with-counters-with-same-name
+% \RequirePackage[thmtools-compat]{keytheorems}
+\RequirePackage{dsfont}		% Permet d'avoir certains alphabets utiles en mathématiques.
+\RequirePackage{manfnt}		% Permet d'utiliser le panneau virage dangereux pour le warning (\dbend ou \textdbend)
+\RequirePackage{units}		% Permet de taper les unités correctement
+\RequirePackage[makeroom]{cancel} % Permet de rayer des expressions
+
+%Pour l'informatique
+\RequirePackage[linesnumbered,lined,ruled,vlined,\lang]{algorithm2e}
+\definecolor{darkWhite}{rgb}{0.94,0.94,0.94} % Utilisé par les options du package:
+
+%Graphiques, tableaux et illustrations
+\RequirePackage{graphicx}		% Permet d'inclure des images
+\RequirePackage{subcaption} % Permet d'organiser plusieurs images côte à côte
+\RequirePackage{float} 			% Permet d'utiliser [H] comme option des figures
+\RequirePackage{booktabs}   % Permet d'avoir de jolis tableau (\toprule, \midrule, \bottomrule)
+\RequirePackage{multicol}   % Permet d'avoir plusieurs colonnes
+\RequirePackage{pgf,tikz, pgfplots}		% Le module tikz permet de tracer de belles images
+\RequirePackage{tikz-cd} % Tikz commutative diagrams
+\pgfplotsset{compat=1.17}
+% see https://tex.stackexchange.com/a/216042/4427
+\usetikzlibrary{arrows, automata, graphs}
+\tikzset{
+  symbol/.style={
+    draw=none,
+    every to/.append style={
+      edge node={node [sloped, allow upside down, auto=false]{$#1$}}}
+  }
+}
+
+\RequirePackage{calc} % Important : permet des opération arithmétiques dans les instructions
+\RequirePackage{etoolbox} % Important : permet de faire des if dans le code latex (see colorboxed).
+
+\RequirePackage[noabbrev, capitalise]{cleveref} % nice ref
+
+\RequirePackage{imakeidx}
+\RequirePackage{minitoc}
+
+%Mise en place des options pour la mise en page
+% \RequirePackage{setspace} % Modifier l'espace entre les lignes.
+% \onehalfspacing
+% \setlength{\parindent}{0 cm}
+\pagestyle{fancy}
+% \fancyhead[RE]{\thechaptername}
+\fancyhead{}
+% \fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\footnotesize\parbox[b]{0.9\headwidth}{\raggedleft\nouppercase{\leftmark}}}
+\fancyhead[LO]{\footnotesize\parbox[b]{0.9\headwidth}{\raggedright\nouppercase{\rightmark}}}
+% \fancyhead[RE]{{\nouppercase{\leftmark}}}
+% \fancyhead[LO]{{\nouppercase{\rightmark}}}
+% \fancyhead[R]{\sectionname}
+% \fancyhead[L]{}
+\fancyfoot{}
+\fancyfoot[C]{\thepage}
+% \setlength{\headheight}{3\baselineskip}
+\allowdisplaybreaks %Pour couper les environnements maths sur plusieurs pages au besoin
+
+%Titlepage
+% \newcommand{mytitle}[1]{}
+
+%Couleurs
+\definecolor{grey}{gray}{0.85}
+\definecolor{grey1}{gray}{0.95}
+\definecolor{grey2}{gray}{0.97}
+
+%Environnements
+% \newenvironment{Titre}[1]{
+% 	\begin{center}
+% 		\Large{\textbf{\textsc{#1}}}
+% 	\end{center}
+%
+% \B}
+%
+
+% \newcommand\myTheoremEnvironments{
+% 				theorem/theorems,
+% }
+% \foreachpair* \myTheoremEnvironments
+% {
+% 				\newtheorem{#1}[baseTheorem]{\titlecap{#1}}
+% 				\crefname{#1}{#1}{#2}
+% }
+
+\newtheorem{thm}{\thmtext}[section]
+% \Crefname{thm}{\thmtext}{\thmtext+s}
+\newtheorem{lem}[thm]{\lemtext}
+% \Crefname{lem}{\lemtext}{\lemtext+s}
+\newtheorem{prop}[thm]{\proptext}
+% \Crefname{prop}{\proptext}{\proptext+s}
+\newtheorem{cor}[thm]{\cortext}
+% \Crefname{cor}{\cortext}{\cortext+s}
+
+
+
+% \theoremstyle{remark}
+\theoremstyle{definition}
+\newtheorem{defi}{\deftext}[section]
+\newtheorem{exemple}{\exempletext}[section]
+\newtheorem{exo}{\exotext}[section]
+\newtheorem*{remarque}{\rqtext}
+\newtheorem*{notation}{Notation}
+\newtheorem{obs}{Observation}[section]
+\theoremstyle{remark}
+\newtheorem*{solution}{Solution}
+
+\newtheoremstyle{custom}{}{}{}{}{\bfseries}{}{ }{\thmname{#3}}
+\theoremstyle{custom}
+\newtheorem*{custom}{custom}
+
+\newenvironment{warning}{\textdbend~}{}
+
+\newcommand{\exosol}[2]{\begin{exo} #1 \begin{solution} #2 \end{solution} \end{exo}}
+\newcommand{\marnote}[2][\notetext]{\marginpar{\textbf{#1}~ #2}}
+
+
+% ------------------ tcolorbox -------------------
+
+\ifbool{\colorboxed}{
+\renewtcolorbox{abstract}{arc=0ex, colback=colAbstract!10, colframe=colAbstract, title={Abstract}, fonttitle=\normalfont\bfseries, fontupper=\normalfont, enhanced}
+\newtcolorbox{important}{arc=0ex, colback=colSoftImportant, colframe=colImportant, title={}, fontupper=\normalfont, breakable, enhanced}
+\newtcolorbox{tcbalign}{arc=0ex, colback=colSoftImportant, colframe=colImportant, breakable, ams align}
+\newtcolorbox{tcbalign*}{arc=0ex, colback=colSoftImportant, colframe=colImportant, breakable, ams align*}
+	\tcolorboxenvironment{thm}{arc=0ex, colback=colSoftThm, colframe=colThm, left=3pt, right=3pt, top=3pt, bottom=2pt,  enhanced}
+	\tcolorboxenvironment{lem}{arc=0ex, colback=colSoftThm, colframe=colSoftThm, left=3pt, right=3pt, top=3pt, bottom=2pt,  enhanced}
+	\tcolorboxenvironment{prop}{arc=0ex, colback=colSoftThm, colframe=colSoftThm, left=3pt, right=3pt, top=3pt, bottom=2pt,  enhanced}
+	\tcolorboxenvironment{cor}{arc=0ex, colback=colSoftThm, colframe=colSoftThm, left=3pt, right=3pt, top=3pt, bottom=2pt,  enhanced}
+	\tcolorboxenvironment{exo}{arc=0ex, colback=colSoftNote, colframe=colSoftNote, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
+	\tcolorboxenvironment{exemple}{arc=0ex, colback=colSoftNote, colframe=colSoftNote, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
+	\tcolorboxenvironment{remarque}{arc=0ex, colback=colSoftNote, colframe=colSoftNote, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
+	\tcolorboxenvironment{notation}{arc=0ex, colback=colSoftNote, colframe=colSoftNote, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
+	\tcolorboxenvironment{obs}{arc=0ex, colback=colSoftNote, colframe=colSoftNote, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
+	\tcolorboxenvironment{defi}{arc=0ex, colback=colSoftDefi, colframe=colDefi, left=3pt, right=3pt, top=3pt, bottom=2pt,  enhanced}
+	\tcolorboxenvironment{proof}{blanker,breakable,left=5mm,before skip=10pt,after skip=10pt,borderline west={1mm}{0pt}{colProof}}
+	\tcolorboxenvironment{custom}{arc=0ex, colback=colSoftNote, colframe=colSoftNote, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, enhanced}
+	\renewenvironment{warning}{}{}
+	\tcolorboxenvironment{warning}{arc=0ex, colback=colSoftImportant, colframe=colImportant!60, left=3pt, right=3pt, top=3pt, bottom=2pt, breakable, attach boxed title to top center={yshift=-2mm}, title=\warningtext, enhanced, colbacktitle=colImportant!60}
+	\renewcommand{\exosol}[2]{\begin{exo} #1 \tcbline \textit{Solution.} #2 \end{exo}}
+	\newtcolorbox{note}[1]{arc=0ex, colback=softGruvBlue, colframe=gruvBlue, title=#1., fonttitle=\normalfont\bfseries, fontupper=\normalfont}
+	\renewcommand{\marnote}[2][\notetext]{
+					\marginnote{%
+									\begin{note}{#1}
+												#2
+									\end{note}
+					}
+	}
+}{}
+
+
+%TODO: factor the following
+\NewDocumentCommand{\layerpresentation}{m m o m o}{
+				\begin{tcolorbox}[title=#1,
+								enhanced,
+								boxrule=1pt,
+								attach boxed title to top left={yshift=-1pt},
+								sharp corners, boxed title style={boxrule=1pt, skin=enhancedfirst, bottom=-1pt, sharp corners},
+								% breakable,
+								]
+								% \begin{tabular}{lr}
+								% 				Notation	 & #2 \\
+								% 				Parameters & #3 \\
+								% 				Output 	   & #4 \\
+								% \end{tabular}
+				\paragraph*{Notation:} \hfill #2
+				\medskip
+				\IfNoValueF{#3}{
+				\paragraph*{Parameters:} \hfill #3
+				\medskip
+				}
+				\paragraph*{Output:} \hfill #4
+				\IfNoValueF{#5}{
+				\tcblower
+				#5
+				}
+				\end{tcolorbox}
+}
+
+\NewDocumentCommand{\nlpresentation}{m m o m o}{
+				\begin{tcolorbox}[title=#1,
+								enhanced,
+								boxrule=1pt,
+								attach boxed title to top left={yshift=-1pt},
+								sharp corners, boxed title style={boxrule=1pt, skin=enhancedfirst, bottom=-1pt, sharp corners},
+								% breakable,
+								]
+				% \begin{itemize}
+				% 	\item \textbf{Notation:} \hfill #2
+				% \IfNoValueF{#3}{
+				%   \item \textbf{Parameters:} \hfill #3
+				% }
+				%   \item \textbf{Output:} \hfill #4
+				% \end{itemize}
+				\paragraph*{Notation:} \hfill #2
+				\medskip
+				\IfNoValueF{#3}{
+				\paragraph*{Parameters:} \hfill #3
+				\medskip
+				}
+				\paragraph*{Output:} \hfill #4
+				\IfNoValueF{#5}{
+				\tcblower
+				#5
+				}
+				\end{tcolorbox}
+}
+
+\NewDocumentCommand{\losspresentation}{m m o m o}{
+				\begin{tcolorbox}[title=#1,
+								enhanced,
+								boxrule=1pt,
+								attach boxed title to top left={yshift=-1pt},
+								sharp corners, boxed title style={boxrule=1pt, skin=enhancedfirst, bottom=-1pt, sharp corners},
+								% breakable,
+								]
+								\paragraph*{Tasks:} \hfill #2
+								\medskip
+								\IfNoValueF{#3}{
+												\paragraph*{Settings:} \hfill #3
+												\medskip
+								}
+								\paragraph*{Output:} \hfill #4
+								\IfNoValueF{#5}{
+												\tcblower
+												#5
+								}
+				\end{tcolorbox}
+}
+
+\NewDocumentCommand{\plotfunction}{O{1} O{#1} O{0.5} m m}{
+				\begin{center}
+								\begin{tikzpicture}
+												\begin{axis}[
+																% axis lines along center, not on outer edges
+																axis lines=center,
+																% make axis lines thick
+																axis line style={thick},
+																% move arrow tip of x-axis to start of line
+																% x axis line style={stealth-},
+																% set the range of the axis
+																xmin=-#1-0.1, xmax=#1+0.1,
+																ymin=-#2-0.1, ymax=#2+0.1,
+																% distance between the ticks, so distance between grid lines
+																xtick distance={#1/4},
+																ytick distance={#2/4},
+																% remove ticklabels
+																xticklabels={},
+																yticklabels={},
+																% extra x ticks={0.5},
+																extra x ticks={-#1, #1},
+																extra y ticks={-#2, #2},
+																% set size of axis box
+																width=#3\textwidth, height=#3\textwidth,
+																scale only axis,
+																% add grid, and change its style
+																grid,
+																grid style={help lines,color=gray!50, dashed},
+																% add axis labels
+																xlabel={$x$},
+																ylabel={$y$},
+																% move xlabel right of axis end point (default is above left)
+																xlabel style={right},
+																legend style={draw=none, fill=white, font=\footnotesize},
+																legend pos=south east,
+																]
+																% \draw[very thin,color=gray, dashed] (-1.1,-1.1) grid (1.1,1.1);
+
+																% \draw[->] (-1.2,0) -- (1.2,0) node[right] {$x$};
+																% \draw[->] (0,-1.2) -- (0,1.2) node[above] {$f(x)$};
+
+																% \draw[color=red] plot (\x,{#5}) node[right] {#4};
+																\IfNoValueF{#4}{
+																				\addlegendimage{empty legend}
+																				\addlegendentry[color=red]{#4}
+																}
+																\addplot [color=red, samples=100, domain=-#1-0.1:#1+0.1]{#5};
+												\end{axis}
+								\end{tikzpicture}
+
+				\end{center}
+}
+
+
+
+%------------------ Title Page -------------------
+\newcommand{\logo}[1]{\renewcommand\@logo{#1}}
+\newcommand\@logo{}
+\newcommand{\subtitle}[1]{\renewcommand\@subtitle{#1}}
+\newcommand\@subtitle{}
+
+\RequirePackage{eso-pic} % add picture to every page
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\newcommand{\blap}[1]{\vbox to 0pt{#1\vss}}
+
+\newcommand\AtUpperLeftCorner[3]{%
+  \put(\LenToUnit{#1},\LenToUnit{\dimexpr\paperheight-#2}){\blap{#3}}%
+}
+\newcommand\AtUpperRightCorner[3]{%
+  \put(\LenToUnit{\dimexpr\paperwidth-#1},\LenToUnit{\dimexpr\paperheight-#2}){\blap{\llap{#3}}}%
+}
+
+\newcommand{\maketitlewithpicture}[1]{
+	\begin{titlepage}
+			\enlargethispage{2cm}
+
+			\AddToShipoutPicture{
+					%\AtUpperLeftCorner{15.5cm}{27cm}{\includegraphics[width=5cm]{data/Images/ensl.png}}
+			\AtUpperLeftCorner{0cm}{0cm}{\includegraphics[width=21cm, height=16cm]{#1}}
+			}V
+
+			\begin{center}
+					\vspace*{16cm}
+
+					{\Huge\textbf{\textsc{\@title}}}
+					\HRule
+					\vspace*{0.5cm}
+
+					\large{\@author}
+					\vfill
+					\@logo
+			\end{center}
+
+	\end{titlepage}
+	\ClearShipoutPicture
+}
+
+\newcommand{\maketitlepage}[1]{
+	\begin{titlepage} % Suppresses displaying the page number on the title page and the subsequent page counts as page 1
+
+	\raggedleft % Right align the title page
+
+	\rule{1pt}{\textheight} % Vertical line
+	\hspace{0.05\textwidth} % Whitespace between the vertical line and title page text
+	\parbox[b]{0.75\textwidth}{ % Paragraph box for holding the title page text, adjust the width to move the title page left or right on the page
+
+		{\Huge\bfseries \@title}\\[2\baselineskip] % Title
+		{\large \@subtitle}\\[2\baselineskip] % Subtitle 
+		{\large\textit{\@date}}\\[4\baselineskip] % date description
+		{\Large\textsc{\@author}} % Author name, lower case for consistent small caps
+
+		\vspace{0.5\textheight} % Whitespace between the title block and the publisher
+
+		{\noindent \@logo}\\[\baselineskip] % Publisher and logo
+	}
+
+	\end{titlepage}
+}
+
+\newcommand{\maketitlearticle}{
+				\thispagestyle{empty}
+				\setcounter{page}{0}
+				\begin{center}
+								\@logo
+								\vspace*{1cm}
+								{\hrule
+								\vspace*{0.5cm}
+								\huge\textbf{\textsc{\@title}}}\\
+								{\@subtitle}~\\
+								\HRule
+								\vspace*{0.5cm}
+
+								\large{\@author}
+								\vspace*{0.5cm}
+				\end{center}
+}
