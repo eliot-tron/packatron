@@ -45,6 +45,11 @@
 \colorlet{colSoftDefi}{colDefi!10}
 \colorlet{colProof}{gray!10}
 
+% \definecolor{mDarkBrown}{HTML}{053284}
+% \definecolor{mDarkTeal}{HTML}{3c3c3b}
+% \definecolor{mLightBrown}{HTML}{1a9fe0}
+% \definecolor{mLightGreen}{HTML}{19913d}
+
 %----------------options--------------
 
 %Macro pour les langues
@@ -94,6 +99,16 @@
 
 
 %---------------packages-------------
+
+\RequirePackage{qrcode}
+\RequirePackage{todonotes}
+
+\RequirePackage{import}
+\RequirePackage{transparent}
+\newcommand{\incfig}[2]{%
+				\def\svgwidth{#1\columnwidth}
+				\import{./Ressources}{#2.pdf_tex}
+}
 
 %Mise en page et texte
 \RequirePackage{microtype} % Better spaces between letters and words, and more
@@ -194,6 +209,17 @@ tabsize=4,
 title=\lstname,
 }
 
+\RequirePackage[
+natbib,
+backend=biber,
+style=authoryear,
+sorting=nyt,
+backref=true,
+maxbibnames=50,
+url=false,
+eprint=false,
+]{biblatex}
+
 % %Mise en place des options pour la mise en page
 % \onehalfspacing
 % % \setlength{\parindent}{0 cm}
@@ -268,64 +294,12 @@ title=\lstname,
 }{}
 
 
-%------------------ Title Page -------------------
-% \newcommand{\logo}[1]{\renewcommand\@logo{#1}}
-% \newcommand\@logo{}
-%
-% \RequirePackage{eso-pic}
-%
-% \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
-% \newcommand{\blap}[1]{\vbox to 0pt{#1\vss}}
-%
-% \newcommand\AtUpperLeftCorner[3]{%
-%   \put(\LenToUnit{#1},\LenToUnit{\dimexpr\paperheight-#2}){\blap{#3}}%
-% }
-% \newcommand\AtUpperRightCorner[3]{%
-%   \put(\LenToUnit{\dimexpr\paperwidth-#1},\LenToUnit{\dimexpr\paperheight-#2}){\blap{\llap{#3}}}%
-% }
-%
-% \newcommand{\maketitlewithpicture}[1]{
-% 	\begin{titlepage}
-% 			\enlargethispage{2cm}
-%
-% 			\AddToShipoutPicture{
-% 					%\AtUpperLeftCorner{15.5cm}{27cm}{\includegraphics[width=5cm]{data/Images/ensl.png}}
-% 			\AtUpperLeftCorner{0cm}{0cm}{\includegraphics[width=21cm, height=16cm]{#1}}
-% 			}
-%
-% 			\begin{center}
-% 					\vspace*{16cm}
-%
-% 					{\Huge\textbf{\textsc{\@title}}}
-% 					\HRule
-% 					\vspace*{0.5cm}
-%
-% 					\large{\@author}
-% 					\vfill
-% 					\@logo
-% 			\end{center}
-%
-% 	\end{titlepage}
-% 	\ClearShipoutPicture
-% }
-%
-% \newcommand{\maketitlepage}[1]{
-% 	\begin{titlepage} % Suppresses displaying the page number on the title page and the subsequent page counts as page 1
-%
-% 	\raggedleft % Right align the title page
-%
-% 	\rule{1pt}{\textheight} % Vertical line
-% 	\hspace{0.05\textwidth} % Whitespace between the vertical line and title page text
-% 	\parbox[b]{0.75\textwidth}{ % Paragraph box for holding the title page text, adjust the width to move the title page left or right on the page
-%
-% 		{\Huge\bfseries \@title}\\[2\baselineskip] % Title
-% 		{\large\textit{\@date}}\\[4\baselineskip] % Subtitle or further description
-% 		{\Large\textsc{\@author}} % Author name, lower case for consistent small caps
-%
-% 		\vspace{0.5\textheight} % Whitespace between the title block and the publisher
-%
-% 		{\noindent \@logo}\\[\baselineskip] % Publisher and logo
-% 	}
-%
-% 	\end{titlepage}
-% }
+\newcommand{\standoutmessage}[1]{
+    \begin{tikzpicture}[remember picture, overlay]
+      \fill[white, opacity=0.6] (current page.south west) rectangle (current page.north east);
+      \node[text width=0.6\textwidth, align=center, font=\Large, opacity=1]
+        at (current page.center) {
+								#1
+        };
+    \end{tikzpicture}
+}
