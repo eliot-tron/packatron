@@ -159,10 +159,10 @@ eprint=false,
 \geometry{
 				a4paper,
 				% twoside,
-				top=4cm,
+				top=3cm,
 				bottom=3cm,
 				inner=3cm,
-				outer=4cm,
+				outer=3cm,
 				% headsep=1cm,
 				headheight=50pt,
 				% marginparsep=0.5cm,
@@ -230,8 +230,8 @@ eprint=false,
 % \fancyhead[RE]{\thechaptername}
 \fancyhead{}
 % \fancyhead[LE,RO]{\thepage}
-\fancyhead[RE]{\footnotesize\parbox[b]{0.9\headwidth}{\raggedleft\nouppercase{\leftmark}}}
-\fancyhead[LO]{\footnotesize\parbox[b]{0.9\headwidth}{\raggedright\nouppercase{\rightmark}}}
+\fancyhead[R]{\parbox[b]{\headwidth}{\raggedleft\nouppercase{\leftmark}}}
+% \fancyhead[LO]{\footnotesize\parbox[b]{0.9\headwidth}{\raggedright\nouppercase{\rightmark}}}
 % \fancyhead[RE]{{\nouppercase{\leftmark}}}
 % \fancyhead[LO]{{\nouppercase{\rightmark}}}
 % \fancyhead[R]{\sectionname}
@@ -464,6 +464,7 @@ eprint=false,
 				\end{center}
 }
 
+\NewDocumentCommand{\citetitlebyaut}{m}{\citetitle*{#1} by \citet{#1}}
 
 
 %------------------ Title Page -------------------
