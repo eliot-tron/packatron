@@ -108,10 +108,13 @@ backend=biber,
 style=numeric,
 sorting=nyt,
 backref=true,
-maxbibnames=50,
+maxcitenames=2,
+maxbibnames=10,
+minbibnames=4,
 url=false,
 eprint=false,
 ]{biblatex}
+\DefineBibliographyExtras{french}{\restorecommand\mkbibnamefamily} % Disable small caps for french citet.
 \RequirePackage{import}
 % To use cross referencing:
 \RequirePackage{xr}
