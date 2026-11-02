@@ -109,11 +109,16 @@
 \RequirePackage{qrcode}
 \RequirePackage{todonotes}
 
+\RequirePackage{xparse}
 \RequirePackage{import}
 \RequirePackage{transparent}
-\newcommand{\incfig}[2]{%
+\NewDocumentCommand{\incfig}{m o m}{%
 				\def\svgwidth{#1\columnwidth}
-				\import{./Ressources}{#2.pdf_tex}
+				\IfNoValueTF{#2}{%
+								\import{./}{#3.pdf_tex}
+				}{%
+								\import{./#2}{#3.pdf_tex}
+				}
 }
 
 %Mise en page et texte
@@ -225,6 +230,7 @@ maxbibnames=50,
 url=false,
 eprint=false,
 ]{biblatex}
+\DefineBibliographyExtras{french}{\restorecommand\mkbibnamefamily} % Disable small caps for french citet.
 
 % %Mise en place des options pour la mise en page
 % \onehalfspacing
