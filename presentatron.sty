@@ -14,14 +14,20 @@
 \definecolor{batlow-256}{HTML}{FACCFA}
 
 % gruvbox colors
-   \definecolor{gruvRed}{HTML}{CC241D}
- \definecolor{gruvGreen}{HTML}{98971A}
+% \definecolor{gruvbglight}{HTML}{FBF1C7}
+\definecolor{gruvbglight}{HTML}{F9F5D7}
+\definecolor{gruvfglight}{HTML}{3C3836}
+% \definecolor{gruvfgdark}{HTML}{EBDBB2}
+\definecolor{gruvfgdark}{HTML}{FBF1C7}
+\definecolor{gruvbgdark}{HTML}{282828}
+\definecolor{gruvRed}{HTML}{CC241D}
+\definecolor{gruvGreen}{HTML}{98971A}
 \definecolor{gruvYellow}{HTML}{D79921}
-  \definecolor{gruvBlue}{HTML}{458588}
+\definecolor{gruvBlue}{HTML}{458588}
 \definecolor{gruvPurple}{HTML}{B16286}
-  \definecolor{gruvAqua}{HTML}{689D6A}
+\definecolor{gruvAqua}{HTML}{689D6A}
 \definecolor{gruvOrange}{HTML}{D65D0E}
-  \definecolor{gruvGrey}{HTML}{7c6f64}
+\definecolor{gruvGrey}{HTML}{7c6f64}
 
 \colorlet{softGruvRed}{gruvRed!10}
 \colorlet{softGruvGreen}{gruvGreen!10}
@@ -34,16 +40,16 @@
 \colorlet{warningGruvRed}{gruvRed!60}
 
 \colorlet{colAbstract}{gruvAqua}
-\colorlet{colSoftAbstract}{colAbstract!10}
+\colorlet{colSoftAbstract}{colAbstract!20}
 \colorlet{colImportant}{gruvRed}
-\colorlet{colSoftImportant}{colImportant!10}
+\colorlet{colSoftImportant}{colImportant!20}
 \colorlet{colThm}{gruvGreen}
-\colorlet{colSoftThm}{colThm!10}
+\colorlet{colSoftThm}{colThm!20}
 \colorlet{colNote}{gruvGrey}
-\colorlet{colSoftNote}{colNote!10}
+\colorlet{colSoftNote}{colNote!20}
 \colorlet{colDefi}{gruvBlue}
-\colorlet{colSoftDefi}{colDefi!10}
-\colorlet{colProof}{gray!10}
+\colorlet{colSoftDefi}{colDefi!20}
+\colorlet{colProof}{gruvGrey!50}
 
 % \definecolor{mDarkBrown}{HTML}{053284}
 % \definecolor{mDarkTeal}{HTML}{3c3c3b}
@@ -146,8 +152,51 @@
 %Pour l'informatique
 \RequirePackage{algorithmic}
 \RequirePackage[linesnumbered,lined,ruled,vlined,\lang]{algorithm2e}
-\definecolor{darkWhite}{rgb}{0.94,0.94,0.94} % Utilisé par les options du package:
 \RequirePackage{listings}		% Permet d'insérer du code dans le fichier
+\lstset{			% Changer l'option langage pour adapter la coloration syntaxique
+aboveskip=3mm,		% Ces options se trouvent à l'addresse: borntocode.fr/latex-comment-insere-et-customiser-du-code-source/
+belowskip=-2mm,
+backgroundcolor=\color{softGruvGrey},
+basicstyle=\footnotesize,
+breakatwhitespace=false,
+breaklines=true,
+captionpos=b,
+commentstyle=\color{gruvAqua},
+deletekeywords={...},
+escapeinside={\%*}{*)},
+extendedchars=true,
+framexleftmargin=16pt,
+framextopmargin=3pt,
+framexbottommargin=6pt,
+frame=tb,
+keepspaces=true,
+keywordstyle=\color{gruvRed},
+% language=Python,
+literate=
+{²}{{\textsuperscript{2}}}1
+{é}{{\'{e}}}1
+{è}{{\`{e}}}1
+{É}{{\'{E}}}1
+{Ê}{{\^{E}}}1
+{â}{{\^{a}}}1
+{à}{{\`{a}}}1
+{À}{{\`{A}}}1
+{ç}{{\c{c}}}1
+{ô}{{\^{o}}}1,
+morekeywords={*,...},
+numbers=left,
+numbersep=10pt,
+numberstyle=\tiny\color{gruvGrey},
+rulecolor=\color{black},
+showspaces=false,
+showstringspaces=false,
+showtabs=false,
+stepnumber=1,
+stringstyle=\color{gruvGrey},
+tabsize=4,
+% title=\lstname,
+}
+
 
 %Graphiques, tableaux et illustrations
 \RequirePackage{graphicx}		% Permet d'inclure des images
@@ -164,50 +213,7 @@
 \RequirePackage{calc} % Important : permet des opération arithmétiques dans les instructions
 \RequirePackage{etoolbox} % Important : permet de faire des if dans le code latex (see colorboxed).
 
-
-\lstset{			% Changer l'option langage pour adapter la coloration syntaxique
-aboveskip=3mm,		% Ces options se trouvent à l'addresse: borntocode.fr/latex-comment-insere-et-customiser-du-code-source/
-belowskip=-2mm,
-backgroundcolor=\color{darkWhite},
-basicstyle=\footnotesize,
-breakatwhitespace=false,
-breaklines=true,
-captionpos=b,
-commentstyle=\color{red},
-deletekeywords={...},
-escapeinside={\%*}{*)},
-extendedchars=true,
-framexleftmargin=16pt,
-framextopmargin=3pt,
-framexbottommargin=6pt,
-frame=tb,
-keepspaces=true,
-keywordstyle=\color{blue},
-language=Python,
-literate=
-{²}{{\textsuperscript{2}}}1
-{é}{{\'{e}}}1
-{è}{{\`{e}}}1
-{É}{{\'{E}}}1
-{Ê}{{\^{E}}}1
-{â}{{\^{a}}}1
-{à}{{\`{a}}}1
-{À}{{\`{A}}}1
-{ç}{{\c{c}}}1
-{ô}{{\^{o}}}1,
-morekeywords={*,...},
-numbers=left,
-numbersep=10pt,
-numberstyle=\tiny\color{black},
-rulecolor=\color{black},
-showspaces=false,
-showstringspaces=false,
-showtabs=false,
-stepnumber=1,
-stringstyle=\color{gray},
-tabsize=4,
-title=\lstname,
-}
+% \RequirePackage[noabbrev, capitalise]{cleveref} % nice ref
 
 \RequirePackage[
 natbib,
@@ -288,8 +294,7 @@ eprint=false,
 	\tcolorboxenvironment{defi}{arc=0ex, colback=colSoftDefi, colframe=colDefi, left=3pt, right=3pt, top=-3pt, bottom=2pt,  enhanced}
 	\tcolorboxenvironment{proof}{blanker,breakable,left=5mm,before skip=10pt,after skip=10pt,borderline west={1mm}{0pt}{colProof}}
 	\tcolorboxenvironment{custom}{arc=0ex, colback=colSoftNote, colframe=colSoftNote, left=3pt, right=3pt, top=-3pt, bottom=2pt, breakable, enhanced}
-	\renewenvironment{warning}{}{}
-	\tcolorboxenvironment{warning}{arc=0ex, colback=colSoftImportant, colframe=colImportant!60, left=3pt, right=3pt, top=-3pt, bottom=2pt, breakable, attach boxed title to top center={yshift=-2mm}, title=\warningtext, enhanced, colbacktitle=colImportant!60}
+	\renewtcolorbox{warning}{arc=0ex, colback=colSoftImportant, colframe=colImportant!60, left=3pt, right=3pt, breakable, attach boxed title to top center={yshift=-2mm}, title=\warningtext, enhanced, colbacktitle=colImportant!60}
 	\renewcommand{\exosol}[2]{\begin{exo} #1 \tcbline \textit{Solution.} #2 \end{exo}}
 }{}
 
@@ -297,7 +302,7 @@ eprint=false,
 \newcommand{\standoutmessage}[1]{
     \begin{tikzpicture}[remember picture, overlay]
       \fill[white, opacity=0.6] (current page.south west) rectangle (current page.north east);
-      \node[text width=0.6\textwidth, align=center, font=\Large, opacity=1]
+      \node[text width=0.75\textwidth, align=justify, font=\Large, opacity=1]
         at (current page.center) {
 								#1
         };
