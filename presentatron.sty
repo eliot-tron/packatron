@@ -107,7 +107,6 @@
 %---------------packages-------------
 
 \RequirePackage{qrcode}
-\RequirePackage{todonotes}
 
 \RequirePackage{xparse}
 \RequirePackage{import}
@@ -141,6 +140,7 @@
 	urlcolor=gruvBlue,
 }
 \RequirePackage[\lang]{babel}	% Précise la langue du document
+\RequirePackage{csquotes}
 \RequirePackage[T1]{fontenc}	% Précise la façon dont le document actuel est encodé
 \RequirePackage[utf8]{inputenc}	% Précise comment le texte est saisi: cela permet de tapper directement les accents
 \RequirePackage{marvosym}  % liste de symboles comme \EUR ou \Letter
@@ -218,7 +218,7 @@ tabsize=4,
 \RequirePackage{calc} % Important : permet des opération arithmétiques dans les instructions
 \RequirePackage{etoolbox} % Important : permet de faire des if dans le code latex (see colorboxed).
 
-% \RequirePackage[noabbrev, capitalise]{cleveref} % nice ref
+\RequirePackage[noabbrev, capitalise]{cleveref} % nice ref
 
 \RequirePackage[
 natbib,
